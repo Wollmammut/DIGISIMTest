@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/DataEntryScene.unity
+    guid: 33d802b18a32ac0819a67a0f74466ab7
+  - enabled: 1
+    path: Assets/Scenes/SimulationModeSelectionScene.unity
+    guid: 02afd94cc1d1e0ff0bc53c5e4f8d76f6
+  - enabled: 1
+    path: Assets/Scenes/SelfPredictScenes/SelfPredictScene.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/RunScene.unity
+    guid: 3fb8eedf52ddabc489057d84b1812cac
+  - enabled: 1
+    path: Assets/Scenes/EndScene.unity
+    guid: 4917ab8e785266bf991a95c8c3a4cd71
+  - enabled: 1
+    path: Assets/Scenes/SelfConstructScenes/SelfConstructInstructionScene.unity
+    guid: 3168fb8811e7530f596ac62f5b018619
+  - enabled: 1
+    path: Assets/Scenes/SelfConstructScenes/SelfConstructScene.unity
+    guid: d34f0e10865646c299b2d6b2e8c5e638
+  - enabled: 1
+    path: Assets/Scenes/IntermissionScene.unity
+    guid: cc8586aca6bc8a0a5ad1de621340d4fa
+  - enabled: 1
+    path: Assets/Scenes/YokedPredictScenes/YokedPredictScene.unity
+    guid: 514de4209f7ccdad197dc5366a56460f
+  - enabled: 1
+    path: Assets/Scenes/YokedConstructScenes/YokedConstructInstructionScene.unity
+    guid: 4be6771886c1802d29af93dd0a1d6469
+  - enabled: 1
+    path: Assets/Scenes/YokedConstructScenes/YokedConstructScene.unity
+    guid: 9bc8ffd256aa4c75ca4c61377d17861e
+  - enabled: 1
+    path: Assets/Scenes/SelfPredictScenes/SelfPredictInstructionScene.unity
+    guid: 8c8ea65d7b9ee2c73bcd44c2e604e1eb
+  - enabled: 1
+    path: Assets/Scenes/YokedPredictScenes/YokedPredictInstructionScene.unity
+    guid: d7ebd673f9748cafe9c8f62f4f7b791a
+  m_configObjects: {}
