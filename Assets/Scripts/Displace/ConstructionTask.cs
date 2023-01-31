@@ -21,14 +21,30 @@ public class ConstructionTask : MonoBehaviour
         switch(task)
         {
             case EnumConstructionTask.SMALLER:
-            text.text = "<";
+            text.text = "-";
             break;
             case EnumConstructionTask.EQUAL:
             text.text = "=";
             break;
             case EnumConstructionTask.BIGGER:
-            text.text = ">";
+            text.text = "+";
             break;
+        }
+    }
+
+    public static EnumConstructionTask getConstructionTaskByName(string name)
+    {
+        if (name == "weniger")
+        {
+            return EnumConstructionTask.SMALLER;
+        }
+        else if (name == "gleich")
+        {
+            return EnumConstructionTask.EQUAL;
+        }
+        else 
+        {
+            return EnumConstructionTask.BIGGER;
         }
     }
 }

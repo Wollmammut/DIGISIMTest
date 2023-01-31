@@ -6,8 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class SimulationStateManager : MonoBehaviour
 {
-    public static int runNumber = 0;
-    public static int maxNumberOfRuns = 1;
+    private static int runNumber = 0;
+    private static int maxNumberOfRuns = 1;
     public static SimulationStates currentSimulationState = SimulationStates.PREVIEW;
     public List<SimulationStep> steps = new List<SimulationStep>();
     protected static int currentStepIndex = 0;
@@ -105,7 +105,8 @@ public class SimulationStateManager : MonoBehaviour
                 }
                 else
                 {
-                   SceneManager.LoadScene("EndScene");// TODO errof if scenetowtichto == null
+                    runNumber = 0;
+                    SceneManager.LoadScene("EndScene");// TODO errof if scenetowtichto == null
                 }
         }
     }
@@ -119,5 +120,15 @@ public class SimulationStateManager : MonoBehaviour
     public void addSimulationComponent<T>(T simulationComponent) where T : Simulation
     {
         T sc = gameObject.AddComponent(simulationComponent.GetType()) as T;
+    }
+
+    public static int getMaxNumberOfRuns()
+    {
+        return maxNumberOfRuns;
+    }
+
+    public static void setMaxNumberOfRuns(int maxNumber)
+    {
+        maxNumberOfRuns = maxNumber;
     }
 }

@@ -15,6 +15,25 @@ public class SpherePredictionSelector : MonoBehaviour
         DEFINITELY_RIGHT
     }
 
+    public static Prediction getPredictionFromName(string name)
+    {
+        switch(name)
+        {
+            case "<<":
+            return Prediction.DEFINITELY_LEFT;
+            case "<":
+            return Prediction.LEFT;
+            case "0":
+            return Prediction.UNSURE;
+            case ">":
+            return Prediction.RIGHT;
+            case ">>":
+            return Prediction.DEFINITELY_RIGHT;
+            default:
+            return Prediction.UNSURE;
+        }
+    }
+
     public static string getNameForPrediction(SpherePredictionSelector.Prediction prediction)
     {
         string toggleName = "";

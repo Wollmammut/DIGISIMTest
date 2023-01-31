@@ -15,6 +15,7 @@ public abstract class DisplacementSim : Simulation
     Vector3 rightSphereTargetPosition;
     float fractionOfLoweringTimePassed;
     static List<Run> runs = new List<Run>();
+    static Dictionary<SimulationSelector.SimulationType, List<Run>> runsBySimulationType = new Dictionary<SimulationSelector.SimulationType, List<Run>>();
     protected Run currentRun;
 
     protected override void Start()
@@ -62,7 +63,21 @@ public abstract class DisplacementSim : Simulation
 
     protected Run getRunForRunNumber(int runNumber)
     {
-       return runs[runNumber]; // TODO bounds check
+        SimulationSelector.SimulationType currentSimulationType = SimulationSelector.currentSimulationType;
+        List<Run> runs;
+        if (runsBySimulationType.TryGetValue(currentSimulationType, out runs))
+        {
+            if (runs.Count > runNumber)
+            {
+                return runs[runNumber];
+            }
+            else
+            {
+                int index = runNumber % runs.Count;
+                return runs[index];
+            }
+        }
+        return null;
     }
 
     protected virtual void FixedUpdate()
@@ -159,5 +174,16 @@ public abstract class DisplacementSim : Simulation
         SphereMaterialParameter materialParameterRight = rightSphere.GetComponent<SphereMaterialParameter>();
         materialParameterRight.setValue(currentRun.materialRight);
         }
+    }
+
+    public static void addNewRunForSimulationType(SimulationSelector.SimulationType type, Run run)
+    {
+        List<Run> runs;
+        if (!runsBySimulationType.TryGetValue(type, out runs))
+        {
+            runs = new List<Run>();
+            runsBySimulationType.Add(type, runs);
+        }
+        runs.Add(run);
     }
 }

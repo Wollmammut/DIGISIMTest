@@ -56,8 +56,8 @@ public class SphereSize : Parameter<int>
 
     static SphereSize()
     {
-        SMALL = addSphereSizeParameter("small", 50);
-        MEDIUM = addSphereSizeParameter("medium", 100);
-        BIG = addSphereSizeParameter("big", 150);
+        SMALL = addSphereSizeParameter("klein", 50);
+        MEDIUM = addSphereSizeParameter("mittel", 100);
+        BIG = addSphereSizeParameter("groß", 150);
     }
 }

@@ -5,6 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class SimulationSelector : MonoBehaviour
 {
+    public enum SimulationType
+    {
+        SELF_CONSTRUCT,
+        SELF_PREDICT,
+        YOKED_CONSTRUCT,
+        YOKED_PREDICT
+    }
     public enum SelfYoked
     {
         SELF,
@@ -28,6 +35,7 @@ public class SimulationSelector : MonoBehaviour
         }
     }
 
+    public static SimulationType currentSimulationType;
     public static SelfYoked selfYoked;
     public static PredictConstruct predictConstruct;
     public static SimulationScenes currentSimulationScenes = new SimulationScenes("SelfPredictScene", "SelfPredictInstructionScene");
@@ -61,11 +69,13 @@ public class SimulationSelector : MonoBehaviour
             if(predictConstruct == PredictConstruct.PREDICT)
             {
                 currentSimulationScenes = new SimulationScenes("SelfPredictScene", "SelfPredictInstructionScene");
+                currentSimulationType = SimulationType.SELF_PREDICT;
                 //SceneManager.LoadScene("SelfPredictInstructionScene");
             }
             else
             {
                 currentSimulationScenes = new SimulationScenes("SelfConstructScene", "SelfConstructInstructionScene");
+                currentSimulationType = SimulationType.SELF_CONSTRUCT;
                 //SceneManager.LoadScene("SelfConstructInstructionScene");
             }
         }
@@ -74,11 +84,13 @@ public class SimulationSelector : MonoBehaviour
             if(predictConstruct == PredictConstruct.PREDICT)
             {
                 currentSimulationScenes = new SimulationScenes("YokedPredictScene", "YokedPredictInstructionScene");
+                currentSimulationType = SimulationType.YOKED_PREDICT;
                 //SceneManager.LoadScene("YokedPredictInstructionScene");
             }
             else
             {
                 currentSimulationScenes = new SimulationScenes("YokedConstructScene", "YokedConstructInstructionScene");
+                currentSimulationType = SimulationType.YOKED_CONSTRUCT;
                 //SceneManager.LoadScene("YokedConstructInstructionScene");
             }
         }

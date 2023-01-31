@@ -57,8 +57,8 @@ public class SphereMaterial : Parameter<string>
 
     static SphereMaterial()
     {
-        STYROFOAM = addSphereMaterialParameter("styrofoam", "Styropor");
-        WOOD = addSphereMaterialParameter("wood", "Holz");
-        LEAD = addSphereMaterialParameter("lead", "Blei");
+        STYROFOAM = addSphereMaterialParameter("Styropor", "Styropor");
+        WOOD = addSphereMaterialParameter("Holz", "Holz");
+        LEAD = addSphereMaterialParameter("Blei", "Blei");
     }
 }

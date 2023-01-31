@@ -8,21 +8,16 @@ public class DataEntrySceneSwitcher : MonoBehaviour
     public GameObject errorPopup;
     public string sceneToSwitchTo;
 
-    void Start()
-    {
-        PlayerPrefs.DeleteAll();
-    }
-
     public void tryToProceed()
     {
-        if (PlayerPrefs.GetString("vpn") == "0" || PlayerPrefs.GetString("vpn") == "")
+        if (ParticipantDataSaver.isAllDataSet())
         {
-            errorPopup.SetActive(true);
-            return;
+            SceneManager.LoadScene(sceneToSwitchTo); // TODO error of scene does not exist
         }
         else
         {
-            SceneManager.LoadScene(sceneToSwitchTo);
+            errorPopup.SetActive(true);
+            return;
         }
     }
 }
