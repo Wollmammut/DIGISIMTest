@@ -11,18 +11,6 @@ public class ClickLogger : MonoBehaviour
     public bool onlyLogFirstClick = false;
     private int amountOfClicksLogged = 0;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public static void logTime(string timeStampName)
     {
         TimeSpan time = timer.Elapsed;
@@ -32,6 +20,10 @@ public class ClickLogger : MonoBehaviour
 
     public void logClick()
     {
+        if (!Input.GetMouseButton(0))
+        {
+            return;
+        }
         if (onlyLogFirstClick && amountOfClicksLogged > 1)
         {
             return;

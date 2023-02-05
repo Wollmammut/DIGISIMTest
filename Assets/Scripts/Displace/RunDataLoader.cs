@@ -90,7 +90,7 @@ public class RunDataLoader : MonoBehaviour
             }
             ++row;
         }
-        Debug.LogErrorFormat("Loaded trial data for " + loadedRuns + " trials");
+        Debug.Log("Loaded trial data for " + loadedRuns + " trials");
     }
 
     public static bool contrainsString(string source, string stringToContain)

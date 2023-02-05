@@ -16,6 +16,7 @@ public class Run
     public SpherePredictionSelector.Prediction yokedPrediction = SpherePredictionSelector.Prediction.LEFT;
     public SphereSize yokedConstructSize = SphereSize.SMALL;
     public SphereMaterial yokedConstructMaterial = SphereMaterial.WOOD;
+    private string trialIdent;
 
     public bool tryInitializeFromStrings(List<string> strings)
     {
@@ -25,6 +26,8 @@ public class Run
         }
 
         bool initializedCorrectly = true;
+
+        trialIdent = strings[(int)RunDataLoader.ColumnHeaderIndices.TRIAL_IDENT];
         string sizeName = strings[(int)RunDataLoader.ColumnHeaderIndices.SIZE_LEFT];
         initializedCorrectly &= assignSphereSize(ref sizeLeft, sizeName);
         sizeName = strings[(int)RunDataLoader.ColumnHeaderIndices.SIZE_RIGHT];

@@ -12,6 +12,9 @@ public class YokedConstructSim : YokedSim
         setSizeToggleAsPointerTarget(SphereSize.MEDIUM);
         setMaterialToggleAsPointerTarget(SphereMaterial.STYROFOAM);
         setToggleAsTarget(buttonTargets[0]);
+
+        setSphereMaterialParameter(leftSphere, SphereMaterial.NONE);
+        setSphereMaterialParameter(rightSphere, SphereMaterial.WOOD);
     }
 
     void setMaterialToggleAsPointerTarget(SphereMaterial material)
@@ -65,6 +68,6 @@ public class YokedConstructSim : YokedSim
         setMaterialToggleAsPointerTarget(material);
         
         replaceKidsWordsPlaceholderWhith("$size", targetSize.name);
-        replaceKidsWordsPlaceholderWhith("$material", material.localizedDisplayName);
+        replaceKidsWordsPlaceholderWhith("$material", material.name);
     }
 }

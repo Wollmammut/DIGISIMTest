@@ -1024,6 +1024,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 105968455477771801, guid: 0040deb51e9447e78a321c4064a5c049, type: 3}
+      propertyPath: m_text
+      value: Ausprobieren
+      objectReference: {fileID: 0}
     - target: {fileID: 182778799941136370, guid: 0040deb51e9447e78a321c4064a5c049, type: 3}
       propertyPath: connectedGameObject
       value: 
@@ -1156,6 +1160,14 @@ PrefabInstance:
       propertyPath: connectedGameObject
       value: 
       objectReference: {fileID: 2002864636}
+    - target: {fileID: 2371045678205804570, guid: 0040deb51e9447e78a321c4064a5c049, type: 3}
+      propertyPath: parameterValueToSetTo
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2925204501531964224, guid: 0040deb51e9447e78a321c4064a5c049, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4249861840626270591, guid: 0040deb51e9447e78a321c4064a5c049, type: 3}
       propertyPath: connectedGameObject
       value: 
@@ -1172,6 +1184,10 @@ PrefabInstance:
       propertyPath: connectedGameObject
       value: 
       objectReference: {fileID: 2002864636}
+    - target: {fileID: 5564566342037861685, guid: 0040deb51e9447e78a321c4064a5c049, type: 3}
+      propertyPath: parameterValueToSetTo
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7726379250437849919, guid: 0040deb51e9447e78a321c4064a5c049, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1192,6 +1208,10 @@ PrefabInstance:
       propertyPath: connectedGameObject
       value: 
       objectReference: {fileID: 2002864636}
+    - target: {fileID: 8955799004354527437, guid: 0040deb51e9447e78a321c4064a5c049, type: 3}
+      propertyPath: parameterValueToSetTo
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0040deb51e9447e78a321c4064a5c049, type: 3}
 --- !u!1001 &6037865811842925250
@@ -1280,6 +1300,10 @@ PrefabInstance:
     - target: {fileID: 6037865810811443563, guid: 332c2d4a08f7df4aba447c2ec51c0bc8, type: 3}
       propertyPath: steps.Array.data[0].runSimulation
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6037865810811443563, guid: 332c2d4a08f7df4aba447c2ec51c0bc8, type: 3}
+      propertyPath: stepIndexToSwitchToAfterInstructions
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6037865810811443563, guid: 332c2d4a08f7df4aba447c2ec51c0bc8, type: 3}
       propertyPath: steps.Array.data[0].correspondingTextObject

@@ -46,6 +46,29 @@ public class YokedPredictSim : YokedSim
         return toggleName;
     }
 
+    string getTextForPrediction(SpherePredictionSelector.Prediction prediction)
+    {
+        string text = "";
+        switch(prediction)
+        {
+            case SpherePredictionSelector.Prediction.DEFINITELY_LEFT:
+            text = "\"Ich bin mir sehr sicher, dass die linke Kugel mehr Wasser verdrängt\"";
+            break; 
+            case SpherePredictionSelector.Prediction.LEFT:
+            text = "\"Ich bin mir sicher, dass die linke Kugel mehr Wasser verdrängt\"";
+            break; 
+            case SpherePredictionSelector.Prediction.UNSURE:
+            text = "\"Ich bin mir unsicher, welche Kugel mehr Wasser verdrängt\"";
+            break; 
+            case SpherePredictionSelector.Prediction.RIGHT:
+            text = "\"Ich bin mir sicher, dass die rechte Kugel mehr Wasser verdrängt\"";
+            break; 
+            case SpherePredictionSelector.Prediction.DEFINITELY_RIGHT:
+            text = "\"Ich bin mir sehr sicher, dass die rechte Kugel mehr Wasser verdrängt\"";
+            break; 
+        }
+        return text;
+    }
     protected override void setupSimulationWithValuesFromCurrentRun()
     {
         SphereSizeParameter spl = leftSphere.GetComponent<SphereSizeParameter>();
@@ -63,6 +86,6 @@ public class YokedPredictSim : YokedSim
         YokedSim.YokedButtonTarget buttonTarget = getButtonTargetForButtonName(toggleName);
         setToggleAsTarget(buttonTarget);
         buttonTargets.Add(buttonTarget);
-        replaceKidsWordsPlaceholderWhith("$prediction", SpherePredictionSelector.getNameForPrediction(yokedPrediction));
+        setTextForAIKidsWords(getTextForPrediction(yokedPrediction));
     }
 }

@@ -12,6 +12,7 @@ public class SimulationStateManager : MonoBehaviour
     public List<SimulationStep> steps = new List<SimulationStep>();
     protected static int currentStepIndex = 0;
     protected SimulationStep currentStep;
+    public int stepIndexToSwitchToAfterInstructions;
 
     [Serializable]
     public enum SimulationStates
@@ -32,6 +33,10 @@ public class SimulationStateManager : MonoBehaviour
         }
         if (steps.Count > 0)
         {
+            if (runNumber > 0)
+            {
+                currentStepIndex = stepIndexToSwitchToAfterInstructions - 1;
+            }
             currentStep = steps[currentStepIndex];
             currentStep.setCorrespondingTextObjectActive(true);
             currentSimulationState = currentStep.currentState;

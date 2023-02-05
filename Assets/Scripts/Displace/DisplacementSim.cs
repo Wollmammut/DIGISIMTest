@@ -32,15 +32,12 @@ public abstract class DisplacementSim : Simulation
         runs.Add(run);
         // TODO testing end
 
-        currentRun = getCurrentRun(); // TODO null check
+        currentRun = getCurrentRun();
 
-        // SphereSizeParameter spl = leftSphere.GetComponent<SphereSizeParameter>();
-        // spl.setValue(currentRun.sizeLeft);
-        // SphereSizeParameter spr = rightSphere.GetComponent<SphereSizeParameter>();
-        // spr.setValue(currentRun.sizeRight);
-
-        // SphereMaterialParameter materialParameterLeft = leftSphere.GetComponent<SphereMaterialParameter>();
-        // SphereMaterialParameter materialParameterRight = rightSphere.GetComponent<SphereMaterialParameter>();
+        setSphereSizeParameter(leftSphere, SphereSize.MEDIUM);
+        setSphereSizeParameter(rightSphere, SphereSize.MEDIUM);
+        setSphereMaterialParameter(leftSphere, SphereMaterial.WOOD);
+        setSphereMaterialParameter(rightSphere, SphereMaterial.WOOD);
 
         leftSphereStartPosition = leftSphere.transform.position;
         leftSphereTargetPosition = leftSphereStartPosition - new Vector3(0, 150, 0);
@@ -53,12 +50,9 @@ public abstract class DisplacementSim : Simulation
         if (currentRun == null)
         {
             int currentRunNumber = SimulationStateManager.getCurrentRunNumber();
-            return getRunForRunNumber(currentRunNumber); // TODO null check
+            currentRun = getRunForRunNumber(currentRunNumber); // TODO null check
         }
-        else
-        {
-            return currentRun;
-        }
+        return currentRun;
     }
 
     protected Run getRunForRunNumber(int runNumber)
@@ -77,7 +71,7 @@ public abstract class DisplacementSim : Simulation
                 return runs[index];
             }
         }
-        return null;
+        return new Run();
     }
 
     protected virtual void FixedUpdate()
@@ -138,11 +132,11 @@ public abstract class DisplacementSim : Simulation
             if (show)
             {
                 GameObject toggleGroupGO = GameObject.Find("SizeToggleGroup"); // TODO null check
-            ToggleGroup toggleGroup = toggleGroupGO.GetComponent<ToggleGroup>();// TODO null check
-            toggleGroup.SetAllTogglesOff();
-            toggleGroupGO = GameObject.Find("MaterialToggleGroup"); // TODO null check
-            toggleGroup = toggleGroupGO.GetComponent<ToggleGroup>();// TODO null check
-            toggleGroup.SetAllTogglesOff();
+                ToggleGroup toggleGroup = toggleGroupGO.GetComponent<ToggleGroup>();// TODO null check
+                toggleGroup.SetAllTogglesOff();
+                toggleGroupGO = GameObject.Find("MaterialToggleGroup"); // TODO null check
+                toggleGroup = toggleGroupGO.GetComponent<ToggleGroup>();// TODO null check
+                toggleGroup.SetAllTogglesOff();
             }
         }
     }
@@ -164,15 +158,37 @@ public abstract class DisplacementSim : Simulation
     {
         if(oldState == SimulationStateManager.SimulationStates.INTERMISSION)
         {
-        SphereSizeParameter spl = leftSphere.GetComponent<SphereSizeParameter>();
-        spl.setValue(currentRun.sizeLeft);
-        SphereSizeParameter spr = rightSphere.GetComponent<SphereSizeParameter>();
-        spr.setValue(currentRun.sizeRight);
+            setSphereSizeParameter(leftSphere, currentRun.sizeLeft);
+            setSphereSizeParameter(rightSphere, currentRun.sizeRight);
 
-        SphereMaterialParameter materialParameterLeft = leftSphere.GetComponent<SphereMaterialParameter>();
-        materialParameterLeft.setValue(currentRun.materialLeft);
-        SphereMaterialParameter materialParameterRight = rightSphere.GetComponent<SphereMaterialParameter>();
-        materialParameterRight.setValue(currentRun.materialRight);
+            setSphereMaterialParameter(leftSphere, currentRun.materialLeft);
+            setSphereMaterialParameter(rightSphere, currentRun.materialRight);
+        }
+    }
+
+    protected static void setSphereSizeParameter(GameObject sphere, SphereSize size)
+    {
+        SphereSizeParameter sizeParameter = sphere.GetComponent<SphereSizeParameter>();
+        if (sizeParameter != null)
+        {
+            sizeParameter.setValue(size);
+        }
+        else
+        {
+            // TODO error
+        }
+    }
+
+    protected static void setSphereMaterialParameter(GameObject sphere, SphereMaterial material)
+    {
+        SphereMaterialParameter materialParameter = sphere.GetComponent<SphereMaterialParameter>();
+        if (materialParameter != null)
+        {
+            materialParameter.setValue(material);
+        }
+        else
+        {
+            // TODO error
         }
     }
 

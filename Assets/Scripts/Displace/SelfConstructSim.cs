@@ -10,6 +10,9 @@ public class SelfConstructSim : DisplacementSim
         showSizeAndMaterialToggles(true);
         showPredictButtons(false);
 
+        setSphereMaterialParameter(leftSphere, SphereMaterial.NONE);
+        setSphereMaterialParameter(rightSphere, SphereMaterial.WOOD);
+
         ConstructionTask constructTask = gameObject.GetComponent<ConstructionTask>();//TODO nulll check
         int currentRunNumber = SimulationStateManager.getCurrentRunNumber();
         currentRun = getRunForRunNumber(currentRunNumber); // TODO null check

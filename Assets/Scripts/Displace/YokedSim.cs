@@ -20,6 +20,12 @@ public class YokedSim : DisplacementSim
         public Vector3 buttonPosition;
     }
 
+    public override void initialize()
+    {
+        base.initialize();
+        hideCursor();
+    }
+
     protected void movePointerToTarget()
     {
         float secondsToReachTarget = 5; // take 5s to get to button;
@@ -81,10 +87,18 @@ public class YokedSim : DisplacementSim
             YokedButtonTarget target = buttonTargets[++buttonTargetsIndex];
             setToggleAsTarget(target);
         }
+        else
+        {
+            showCursor();
+        }
     }
 
     public override void onSimulationStateChanged(SimulationStateManager.SimulationStates oldState, SimulationStateManager.SimulationStates newState)
     {
+        if (newState == SimulationStateManager.SimulationStates.DEMO)
+        {
+            hideCursor();
+        }
         if(oldState == SimulationStateManager.SimulationStates.INTERMISSION)
         {
         //SphereSizeParameter spl = leftSphere.GetComponent<SphereSizeParameter>();
@@ -105,5 +119,16 @@ public class YokedSim : DisplacementSim
     protected virtual void setupSimulationWithValuesFromCurrentRun()
     {
 
+    }
+
+    public void hideCursor()
+    {
+       Cursor.lockState = CursorLockMode.Locked;
+
+    }
+
+    public void showCursor()
+    {
+Cursor.lockState = CursorLockMode.None;
     }
 }

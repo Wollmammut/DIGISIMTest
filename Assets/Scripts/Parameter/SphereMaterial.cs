@@ -5,32 +5,34 @@ using UnityEngine;
 public class SphereMaterial : Parameter<string>
 {
     private static Dictionary<string, SphereMaterial> MATERIAL_TO_NAME = new Dictionary<string, SphereMaterial>();
+    public static SphereMaterial NONE;
     public static SphereMaterial STYROFOAM;
     public static SphereMaterial WOOD;
     public static SphereMaterial LEAD;
-    public string localizedDisplayName;
 
     public enum EnumSphereMaterial
     {
+        NONE,
         STYROFOAM,
         WOOD,
         LEAD
     }
 
-    public SphereMaterial(string name, string value, string localizedDisplayName) : base(name, value)
+    public SphereMaterial(string name, string value) : base(name, value)
     {
-        this.localizedDisplayName = localizedDisplayName;
+
     }
 
     public static SphereMaterial getSphereMaterialFromEnum(SphereMaterial.EnumSphereMaterial e)
     {
         switch (e)
         {
+            case EnumSphereMaterial.NONE: return NONE;
             case EnumSphereMaterial.STYROFOAM: return STYROFOAM;
             case EnumSphereMaterial.WOOD: return WOOD;
             case EnumSphereMaterial.LEAD: return LEAD;
             default:
-            return WOOD;
+            return NONE;
         }
     }
 
@@ -48,17 +50,18 @@ public class SphereMaterial : Parameter<string>
         }
     }
 
-    private static SphereMaterial addSphereMaterialParameter(string name, string localizedDisplayName)
+    private static SphereMaterial addSphereMaterialParameter(string name)
     {
-        SphereMaterial s = new SphereMaterial(name, name, localizedDisplayName);
+        SphereMaterial s = new SphereMaterial(name, name);
         MATERIAL_TO_NAME.Add(name,s);
         return s;
     }
 
     static SphereMaterial()
     {
-        STYROFOAM = addSphereMaterialParameter("Styropor", "Styropor");
-        WOOD = addSphereMaterialParameter("Holz", "Holz");
-        LEAD = addSphereMaterialParameter("Blei", "Blei");
+        NONE = addSphereMaterialParameter("None");
+        STYROFOAM = addSphereMaterialParameter("Styropor");
+        WOOD = addSphereMaterialParameter("Holz");
+        LEAD = addSphereMaterialParameter("Blei");
     }
 }

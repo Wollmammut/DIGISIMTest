@@ -985,6 +985,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 105968455477771801, guid: 0040deb51e9447e78a321c4064a5c049, type: 3}
+      propertyPath: m_text
+      value: Ausprobieren
+      objectReference: {fileID: 0}
     - target: {fileID: 182778799941136370, guid: 0040deb51e9447e78a321c4064a5c049, type: 3}
       propertyPath: connectedGameObject
       value: 
@@ -1293,6 +1297,10 @@ PrefabInstance:
     - target: {fileID: 6037865810811443563, guid: 332c2d4a08f7df4aba447c2ec51c0bc8, type: 3}
       propertyPath: steps.Array.data[0].runSimulation
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6037865810811443563, guid: 332c2d4a08f7df4aba447c2ec51c0bc8, type: 3}
+      propertyPath: stepIndexToSwitchToAfterInstructions
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6037865810811443563, guid: 332c2d4a08f7df4aba447c2ec51c0bc8, type: 3}
       propertyPath: steps.Array.data[0].correspondingTextObject
