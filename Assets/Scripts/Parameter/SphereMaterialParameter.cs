@@ -13,7 +13,7 @@ public class SphereMaterialParameter : MonoBehaviour, ParameterSetter<SphereMate
     public void setValue(SphereMaterial value)
     {      
         string matName = value.getValue();
-        UnityEngine.Material newMaterial = Resources.Load<UnityEngine.Material>("Materials/" + matName);
+        UnityEngine.Material newMaterial = Resources.Load<UnityEngine.Material>("Materials/Fancy/" + matName);
         if (newMaterial == null)
         {
             //TODO some kind of error

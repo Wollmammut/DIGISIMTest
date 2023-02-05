@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Linq;
 
 public abstract class DisplacementSim : Simulation
 {
@@ -88,6 +89,14 @@ public abstract class DisplacementSim : Simulation
     {
         float secondsToReachTarget = 10; // take 10 s to lower spheres;
         fractionOfLoweringTimePassed += Time.deltaTime/secondsToReachTarget;
+        if (fractionOfLoweringTimePassed > 1) // not a very good solution
+        {
+            showCursor();
+        }
+        else
+        {
+            hideCursor();
+        }
         leftSphere.transform.position = Vector3.Lerp(leftSphereStartPosition, leftSphereTargetPosition, fractionOfLoweringTimePassed);
         rightSphere.transform.position = Vector3.Lerp(rightSphereStartPosition, rightSphereTargetPosition, fractionOfLoweringTimePassed);
     }
@@ -201,5 +210,39 @@ public abstract class DisplacementSim : Simulation
             runsBySimulationType.Add(type, runs);
         }
         runs.Add(run);
+    }
+
+    protected virtual bool isToggleGroupActive(string groupName)
+    {
+        GameObject go = GameObject.Find(groupName);
+        if (go != null)
+        {
+            ToggleGroup toggleGroup = go.transform.GetComponent<ToggleGroup>();
+            if (toggleGroup != null)
+            {
+                IEnumerable<Toggle> activeToggles = toggleGroup.ActiveToggles();
+                if (activeToggles == null || !activeToggles.Any())
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public override bool canProceed()
+    {
+        return isToggleGroupActive("PredictButtons") && isToggleGroupActive("MaterialToggleGroup") && isToggleGroupActive("SizeToggleGroup");
+    }
+
+    public void hideCursor()
+    {
+       Cursor.lockState = CursorLockMode.Locked;
+
+    }
+
+    public void showCursor()
+    {
+        Cursor.lockState = CursorLockMode.None;
     }
 }

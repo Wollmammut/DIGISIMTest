@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
 
 public class SimulationStateManager : MonoBehaviour
 {
@@ -38,6 +40,7 @@ public class SimulationStateManager : MonoBehaviour
                 currentStepIndex = stepIndexToSwitchToAfterInstructions - 1;
             }
             currentStep = steps[currentStepIndex];
+            currentStep.setProceedButtonText();
             currentStep.setCorrespondingTextObjectActive(true);
             currentSimulationState = currentStep.currentState;
         }
@@ -81,14 +84,19 @@ public class SimulationStateManager : MonoBehaviour
         currentStep.setCorrespondingTextObjectActive(false);
         currentStep = steps[++currentStepIndex];
         currentStep.correspondingTextObject.SetActive(true);
+        currentStep.setProceedButtonText();
         SimulationStates oldState = currentSimulationState;
         currentSimulationState = currentStep.currentState;
-        Simulation simulation = gameObject.GetComponent<Simulation>();
+        Simulation simulation = getSimulationComponent();
         simulation.onSimulationStateChanged(oldState, currentSimulationState);
     }
 
     public void toggleSimulationActive()
     {
+        if(!getSimulationComponent().canProceed())
+        {
+            return;
+        }
         if (hasNextStep())
         {
             activateNextStep();
@@ -116,10 +124,14 @@ public class SimulationStateManager : MonoBehaviour
         }
     }
 
-    public void initializeSimulation()
+    private Simulation getSimulationComponent()
     {
-        Simulation simulation = gameObject.GetComponent<Simulation>();
-        simulation.initialize();
+        return gameObject.GetComponent<Simulation>();
+    }
+
+    public void initializeSimulation()
+    {  
+        getSimulationComponent().initialize();
     }
 
     public void addSimulationComponent<T>(T simulationComponent) where T : Simulation

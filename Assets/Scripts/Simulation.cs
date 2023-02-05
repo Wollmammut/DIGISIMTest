@@ -33,8 +33,5 @@ public abstract class Simulation : MonoBehaviour
 
     }
 
-    public virtual bool canProceed()
-    {
-        return true; // TODO make abstract and add code for displace sim (biolog overrides this method already)
-    }
+    public abstract bool canProceed();
 }

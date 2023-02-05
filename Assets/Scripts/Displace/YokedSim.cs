@@ -120,15 +120,4 @@ public class YokedSim : DisplacementSim
     {
 
     }
-
-    public void hideCursor()
-    {
-       Cursor.lockState = CursorLockMode.Locked;
-
-    }
-
-    public void showCursor()
-    {
-Cursor.lockState = CursorLockMode.None;
-    }
 }
