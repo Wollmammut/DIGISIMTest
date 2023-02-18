@@ -867,10 +867,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1856872502283679261, guid: 642f602fefaaa0d3a8f8bea6ecb3694c, type: 3}
       propertyPath: m_text
-      value: "Hallo und herzlich willkommen zu unserer Studie. Im Folgenden wird
-        deine Aufgabe sein, eine Kugel zu erstellen, die mehr, weniger oder gleich
-        viel Wasser verdr\xE4ngt, als eine andere Kugel. Du wirst immer zwei Kugeln
-        sehen."
+      value: "Hallo und herzlich willkommen zu unserer Studie. Im Folgenden sollst
+        du herausfinden, wovon es abh\xE4ngt, wie viel Wasser ein Objekt verdr\xE4ngt.
+        Um etwas dar\xFCber herauszufinden, wirst du eine Kugel erstellen, die mehr,
+        weniger oder gleich viel Wasser verdr\xE4ngt als eine andere Kugel.\nDaraufhin
+        kannst du beobachten, wie viel Wasser von den Kugeln tats\xE4chlich verdr\xE4ngt
+        wird. Du wirst immer zwei Kugeln sehen."
       objectReference: {fileID: 0}
     - target: {fileID: 1856872502283679261, guid: 642f602fefaaa0d3a8f8bea6ecb3694c, type: 3}
       propertyPath: m_fontColor.b

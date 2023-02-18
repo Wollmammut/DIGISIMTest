@@ -85,4 +85,9 @@ public class BiologSim : Simulation
     {
         parametersByName[name] = parameter;
     }
+
+    public override void saveData()
+    {
+       // TODO 
+    }
 }

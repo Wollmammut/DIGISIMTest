@@ -13,12 +13,21 @@ public class SphereMaterialParameter : MonoBehaviour, ParameterSetter<SphereMate
     public void setValue(SphereMaterial value)
     {      
         string matName = value.getValue();
-        UnityEngine.Material newMaterial = Resources.Load<UnityEngine.Material>("Materials/Fancy/" + matName);
+        if (Simulation.useFancyGraphics())
+        {
+            matName = "Materials/Fancy/" + matName;
+        }
+        else
+        {
+            matName = "Materials/" + matName;
+        }
+        UnityEngine.Material newMaterial = Resources.Load<UnityEngine.Material>(matName);
         if (newMaterial == null)
         {
             //TODO some kind of error
         }
         MeshRenderer meshRenderer = GetComponent<MeshRenderer>();
         meshRenderer.material = newMaterial;
+
     }
 }

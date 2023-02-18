@@ -21,9 +21,7 @@ public abstract class DisplacementSim : Simulation
 
     protected override void Start()
     {
-        // TODO load data for runs somewhere
         base.Start();
-        
     }
 
     public override void initialize()
@@ -89,14 +87,14 @@ public abstract class DisplacementSim : Simulation
     {
         float secondsToReachTarget = 10; // take 10 s to lower spheres;
         fractionOfLoweringTimePassed += Time.deltaTime/secondsToReachTarget;
-        if (fractionOfLoweringTimePassed > 1) // not a very good solution
-        {
-            showCursor();
-        }
-        else
-        {
-            hideCursor();
-        }
+        // if (fractionOfLoweringTimePassed > 1) // not a very good solution
+        // {
+        //     showCursor();
+        // }
+        // else
+        // {
+        //     hideCursor();
+        // }
         leftSphere.transform.position = Vector3.Lerp(leftSphereStartPosition, leftSphereTargetPosition, fractionOfLoweringTimePassed);
         rightSphere.transform.position = Vector3.Lerp(rightSphereStartPosition, rightSphereTargetPosition, fractionOfLoweringTimePassed);
     }
@@ -244,5 +242,14 @@ public abstract class DisplacementSim : Simulation
     public void showCursor()
     {
         Cursor.lockState = CursorLockMode.None;
+    }
+
+    public override void saveData()
+    {
+        ParticipantDataDisplace data = new ParticipantDataDisplace();
+        data.trialIdent = currentRun.trialIdent;
+        data.conditionActor = SimulationSelector.simulationActor;
+        data.conditionActivity = SimulationSelector.simulationActivity;
+        ParticipantDataLogger.saveParticipantData(data);
     }
 }

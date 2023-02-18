@@ -2505,9 +2505,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Hallo und herzlich willkommen zu unserer Studie. Im Folgenden wirst du
-    ein anderes Kind dabei beobachten, wie es Vorhersagen trifft, welche von zwei
-    Kugeln mehr Wasser verdr\xE4ngt."
+  m_text: "Hallo und herzlich willkommen zu unserer Studie. Im Folgenden sollst du
+    herausfinden, wovon es abh\xE4ngt, wie viel Wasser ein Objekt verdr\xE4ngt. Um
+    etwas dar\xFCber herauszufinden, wirst du ein Kind beobachten, wie es vorhersagt,
+    welche von zwei Kugeln mehr Wasser verdr\xE4ngt.\nDaraufhin kannst du beobachten,
+    wie viel Wasser von den Kugeln tats\xE4chlich verdr\xE4ngt wird. Du wirst immer
+    zwei Kugeln sehen."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

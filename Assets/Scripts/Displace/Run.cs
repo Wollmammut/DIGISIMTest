@@ -16,7 +16,7 @@ public class Run
     public SpherePredictionSelector.Prediction yokedPrediction = SpherePredictionSelector.Prediction.LEFT;
     public SphereSize yokedConstructSize = SphereSize.SMALL;
     public SphereMaterial yokedConstructMaterial = SphereMaterial.WOOD;
-    private string trialIdent;
+    public string trialIdent;
 
     public bool tryInitializeFromStrings(List<string> strings)
     {
@@ -70,7 +70,7 @@ public class Run
         SphereMaterial material = SphereMaterial.getSphereMaterialParameterFromName(name);
         if (material == null)
         {
-            return false;
+            material = SphereMaterial.NONE;
         }
         variableToAssignTo = material;
         return true;

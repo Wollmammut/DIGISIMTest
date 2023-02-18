@@ -39,25 +39,31 @@ public class SimulationSelector : MonoBehaviour
     public static SelfYoked selfYoked;
     public static PredictConstruct predictConstruct;
     public static SimulationScenes currentSimulationScenes = new SimulationScenes("SelfPredictScene", "SelfPredictInstructionScene");
+    public static string simulationActor; // you know, if c# enums weren't as shit as they are those two fields could be enum properties... and I refuse to make another stupid switch over enums. Fix yo enums, c#...
+    public static string simulationActivity;
 
     public void setSelf()
     {
         selfYoked = SelfYoked.SELF;
+        simulationActor = "self";
     }
 
     public void setYoked()
     {
         selfYoked = SelfYoked.YOKED;
+        simulationActor = "yoked";
     }
 
     public void setPredict()
     {
         predictConstruct = PredictConstruct.PREDICT;
+        simulationActivity = "predict";
     }
 
     public void setConstruct()
     {
         predictConstruct = PredictConstruct.CONSTRUCT;
+        simulationActivity = "construct";
     }
 
     private static void setSceneNames()

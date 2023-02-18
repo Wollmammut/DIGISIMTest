@@ -21,11 +21,11 @@ public class YokedConstructSim : YokedSim
     {
         YokedSim.YokedButtonTarget buttonTarget;
 
-        if (material.name.Equals("wood"))
+        if (material == SphereMaterial.WOOD)
         {
             buttonTarget = getButtonTargetForButtonName("ToggleWood");
         }
-        else if (material.name == "styrofoam")
+        else if (material == SphereMaterial.STYROFOAM)
         {
             buttonTarget = getButtonTargetForButtonName("ToggleStyrofoam");
         }

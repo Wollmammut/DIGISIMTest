@@ -110,17 +110,20 @@ public class SimulationStateManager : MonoBehaviour
         else
         {
             currentStepIndex = 0;
+            Simulation simulation = getSimulationComponent();
+            simulation.saveData();
+            ClickLogger.clear();
             if (maxNumberOfRuns - 1 > runNumber)
-                {
-                    currentStepIndex = 0;
-                    ++runNumber;
-                    SceneManager.LoadScene("RunScene");// TODO errof if scenetowtichto == null
-                }
-                else
-                {
-                    runNumber = 0;
-                    SceneManager.LoadScene("EndScene");// TODO errof if scenetowtichto == null
-                }
+            {
+                currentStepIndex = 0;
+                ++runNumber;
+                SceneManager.LoadScene("RunScene");// TODO errof if scenetowtichto == null
+            }
+            else
+            {
+                runNumber = 0;
+                SceneManager.LoadScene("EndScene");// TODO errof if scenetowtichto == null
+            }
         }
     }
 

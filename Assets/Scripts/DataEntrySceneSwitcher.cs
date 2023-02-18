@@ -10,7 +10,7 @@ public class DataEntrySceneSwitcher : MonoBehaviour
 
     public void tryToProceed()
     {
-        if (ParticipantDataSaver.isAllDataSet())
+        if (ParticipantDataLogger.isAllDataSet())
         {
             SceneManager.LoadScene(sceneToSwitchTo); // TODO error of scene does not exist
         }

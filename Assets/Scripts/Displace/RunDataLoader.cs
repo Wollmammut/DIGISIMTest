@@ -126,19 +126,4 @@ public class RunDataLoader : MonoBehaviour
         }
         return values;
     }
-
-    public void writeRunData()
-    {
-        var filePath = Path.Combine(Application.persistentDataPath, "test");
-
-        using (var file = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.Write))
-        {
-            using (var writer = new StreamWriter(file, Encoding.UTF8))
-            {
-                writer.Write("testtesttest");
-            }
-        }
-
-        Debug.LogFormat("Written to {0}", filePath);
-    }
 }

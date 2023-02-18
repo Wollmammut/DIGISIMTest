@@ -6,6 +6,7 @@ using UnityEngine;
 public abstract class Simulation : MonoBehaviour
 {
     protected bool isActive = false;
+    protected static bool fancyGraphics = true;
 
     // Start is called before the first frame update
     protected virtual void Start()
@@ -33,5 +34,17 @@ public abstract class Simulation : MonoBehaviour
 
     }
 
+    public abstract void saveData();
+    
     public abstract bool canProceed();
+
+    public static bool useFancyGraphics()
+    {
+        return fancyGraphics;
+    }
+
+    public static void switchUseFancyGraphics()
+    {
+        fancyGraphics = !fancyGraphics;
+    }
 }
