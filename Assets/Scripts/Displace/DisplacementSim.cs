@@ -10,10 +10,16 @@ public abstract class DisplacementSim : Simulation
     public GameObject panelForAIKidsWords;
     public GameObject leftSphere;
     public GameObject rightSphere;
+    protected GameObject leftPlunger;
+    protected GameObject rightPlunger;
     Vector3 leftSphereStartPosition;
     Vector3 leftSphereTargetPosition;
     Vector3 rightSphereStartPosition;
     Vector3 rightSphereTargetPosition;
+    Vector3 leftPlungerStartPosition;
+    Vector3 leftPlungerTargetPosition;
+    Vector3 rightPlungerStartPosition;
+    Vector3 rightPlungerTargetPosition;
     float fractionOfLoweringTimePassed;
     static List<Run> runs = new List<Run>();
     static Dictionary<SimulationSelector.SimulationType, List<Run>> runsBySimulationType = new Dictionary<SimulationSelector.SimulationType, List<Run>>();
@@ -42,6 +48,13 @@ public abstract class DisplacementSim : Simulation
         leftSphereTargetPosition = leftSphereStartPosition - new Vector3(0, 150, 0);
         rightSphereStartPosition = rightSphere.transform.position;
         rightSphereTargetPosition = rightSphereStartPosition - new Vector3(0, 150, 0);
+
+        leftPlunger = GameObject.Find("LeftPlunger");
+        rightPlunger = GameObject.Find("RightPlunger");
+        leftPlungerStartPosition = leftPlunger.transform.position;
+        leftPlungerTargetPosition = leftPlungerStartPosition - new Vector3(0, 150, 0);
+        rightPlungerStartPosition = rightPlunger.transform.position;
+        rightPlungerTargetPosition = rightPlungerStartPosition - new Vector3(0, 150, 0);
     }
 
     public Run getCurrentRun()
@@ -97,6 +110,8 @@ public abstract class DisplacementSim : Simulation
         // }
         leftSphere.transform.position = Vector3.Lerp(leftSphereStartPosition, leftSphereTargetPosition, fractionOfLoweringTimePassed);
         rightSphere.transform.position = Vector3.Lerp(rightSphereStartPosition, rightSphereTargetPosition, fractionOfLoweringTimePassed);
+        leftPlunger.transform.position = Vector3.Lerp(leftPlungerStartPosition, leftPlungerTargetPosition, fractionOfLoweringTimePassed);
+        rightPlunger.transform.position = Vector3.Lerp(rightPlungerStartPosition, rightPlungerTargetPosition, fractionOfLoweringTimePassed);
     }
 
     protected override void onActivation()

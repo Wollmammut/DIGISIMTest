@@ -14,7 +14,7 @@ public class ClickLogger : MonoBehaviour
 
     public static void clear()
     {
-        loggedClicks.Clear();
+        loggedClicks = new List<LoggedClick>();
     }
 
     public static void logTime(string timeStampName)

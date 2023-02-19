@@ -1,12 +1,15 @@
 using System;
 using UnityEngine;
+using Newtonsoft.Json;
 
 [Serializable]
 public class LoggedClick
 {
-    [SerializeField]
+    // [SerializeField]
+    [JsonProperty]
     string time;
-    [SerializeField]
+    // [SerializeField]
+    [JsonProperty]
     string clickedObjectName;
 
     public LoggedClick(TimeSpan time, string clickedObjectName)

@@ -25,8 +25,8 @@ RenderSettings:
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
   m_AmbientMode: 0
-  m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SubtractiveShadowColor: {r: 0.7264151, g: 0.7264151, b: 0.7264151, a: 1}
+  m_SkyboxMaterial: {fileID: 2100000, guid: c1c9bf951b585a151820de2b4c9a1709, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571343, b: 0.30692208, a: 1}
+  m_IndirectSpecularColor: {r: 0.575197, g: 0.575197, b: 0.575197, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -551,7 +551,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 109509199}
-        m_TargetAssemblyTypeName: ParticipantDataSaver, Assembly-CSharp
+        m_TargetAssemblyTypeName: ParticipantDataLogger, Assembly-CSharp
         m_MethodName: setVPNCode
         m_Mode: 0
         m_Arguments:
@@ -645,7 +645,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 109509194}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4bff755c27fcc45a695e416c20a30bb1, type: 3}
+  m_Script: {fileID: 11500000, guid: b2b495120cce0a87b9f1afbf8c557dd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &119019558
@@ -1481,7 +1481,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 550404751}
-        m_TargetAssemblyTypeName: ParticipantDataSaver, Assembly-CSharp
+        m_TargetAssemblyTypeName: ParticipantDataLogger, Assembly-CSharp
         m_MethodName: setAge
         m_Mode: 0
         m_Arguments:
@@ -1575,7 +1575,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 550404746}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4bff755c27fcc45a695e416c20a30bb1, type: 3}
+  m_Script: {fileID: 11500000, guid: b2b495120cce0a87b9f1afbf8c557dd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &650921766
@@ -2233,7 +2233,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 875664005}
-        m_TargetAssemblyTypeName: ParticipantDataSaver, Assembly-CSharp
+        m_TargetAssemblyTypeName: ParticipantDataLogger, Assembly-CSharp
         m_MethodName: setSex
         m_Mode: 0
         m_Arguments:
@@ -2292,7 +2292,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 875664000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4bff755c27fcc45a695e416c20a30bb1, type: 3}
+  m_Script: {fileID: 11500000, guid: b2b495120cce0a87b9f1afbf8c557dd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &963194225
@@ -2561,7 +2561,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1110627463}
-        m_TargetAssemblyTypeName: ParticipantDataSaver, Assembly-CSharp
+        m_TargetAssemblyTypeName: ParticipantDataLogger, Assembly-CSharp
         m_MethodName: setNumberOfRuns
         m_Mode: 0
         m_Arguments:
@@ -2655,7 +2655,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1110627458}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4bff755c27fcc45a695e416c20a30bb1, type: 3}
+  m_Script: {fileID: 11500000, guid: b2b495120cce0a87b9f1afbf8c557dd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1136064141

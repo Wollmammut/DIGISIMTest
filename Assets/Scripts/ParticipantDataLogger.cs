@@ -7,6 +7,8 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 public class ParticipantDataLogger : MonoBehaviour
 {
@@ -98,23 +100,20 @@ public class ParticipantDataLogger : MonoBehaviour
         participantData.VPNCode = VPNCode;
         participantData.sex = getNameForSex(sex);
 
-        participantData.additionalData = additionalData;
-        
-        participantData.addLoggedClicksForRunNumber(ClickLogger.getLoggedClicks(), SimulationStateManager.getCurrentRunNumber());
+        participantData.addLoggedClicksForRunNumber(ClickLogger.getLoggedClicks(), SimulationStateManager.getCurrentRunNumber(), additionalData);
 
-        string jsonString = JsonUtility.ToJson(participantData, true);
-        writeRunJson(VPNCode + "_" + DateTime.Today, jsonString);
+        // string jsonString = JsonUtility.ToJson(participantData, true);
+        // writeRunJson(VPNCode + "_" + DateTime.Today, jsonString);
 
-//         JsonSerializer serializer = new JsonSerializer();
-// serializer.Converters.Add(new JavaScriptDateTimeConverter());
-// serializer.NullValueHandling = NullValueHandling.Ignore;
+        JsonSerializer serializer = new JsonSerializer();
+        serializer.Converters.Add(new JavaScriptDateTimeConverter());
+        serializer.NullValueHandling = NullValueHandling.Ignore;
 
-// using (StreamWriter sw = new StreamWriter(Path.Combine(Application.persistentDataPath, VPNCode + "_" + DateTime.Today)))
-// using (JsonWriter writer = new JsonTextWriter(sw))
-// {
-//     serializer.Serialize(writer, data);
-// }
-
+        using (StreamWriter sw = new StreamWriter(Path.Combine(Application.persistentDataPath, VPNCode + "_" + DateTime.Today)))
+        using (JsonWriter writer = new JsonTextWriter(sw){ Formatting = Formatting.Indented })
+        {
+        serializer.Serialize(writer, participantData);
+        }
     }
 
     private static void writeRunJson(string fileName, string jsonString)
