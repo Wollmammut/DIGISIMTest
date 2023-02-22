@@ -203,6 +203,7 @@ public abstract class DisplacementSim : Simulation
 
     protected static void setSphereMaterialParameter(GameObject sphere, SphereMaterial material)
     {
+        Debug.Log(material.name);
         SphereMaterialParameter materialParameter = sphere.GetComponent<SphereMaterialParameter>();
         if (materialParameter != null)
         {

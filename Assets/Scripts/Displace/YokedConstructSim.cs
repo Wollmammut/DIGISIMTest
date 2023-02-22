@@ -14,7 +14,7 @@ public class YokedConstructSim : YokedSim
         setToggleAsTarget(buttonTargets[0]);
 
         setSphereMaterialParameter(leftSphere, SphereMaterial.NONE);
-        setSphereMaterialParameter(rightSphere, SphereMaterial.WOOD);
+        //setSphereMaterialParameter(rightSphere, SphereMaterial.WOOD);
     }
 
     void setMaterialToggleAsPointerTarget(SphereMaterial material)
@@ -57,6 +57,16 @@ public class YokedConstructSim : YokedSim
 
     protected override void setupSimulationWithValuesFromCurrentRun()
     {
+        SphereSizeParameter spl = leftSphere.GetComponent<SphereSizeParameter>();
+        spl.setValue(currentRun.sizeLeft);
+        SphereSizeParameter spr = rightSphere.GetComponent<SphereSizeParameter>();
+        spr.setValue(currentRun.sizeRight);
+
+        SphereMaterialParameter materialParameterLeft = leftSphere.GetComponent<SphereMaterialParameter>();
+        materialParameterLeft.setValue(currentRun.materialLeft);
+        SphereMaterialParameter materialParameterRight = rightSphere.GetComponent<SphereMaterialParameter>();
+        materialParameterRight.setValue(currentRun.materialRight);
+        
         ConstructionTask constructTask = gameObject.GetComponent<ConstructionTask>();//TODO nulll check
         int currentRunNumber = SimulationStateManager.getCurrentRunNumber();
         currentRun = getRunForRunNumber(currentRunNumber); // TODO null check
@@ -67,7 +77,7 @@ public class YokedConstructSim : YokedSim
         setSizeToggleAsPointerTarget(targetSize);
         setMaterialToggleAsPointerTarget(material);
         
-        replaceKidsWordsPlaceholderWhith("$size", targetSize.name);
+        replaceKidsWordsPlaceholderWhith("$size", targetSize.getAdjective());
         replaceKidsWordsPlaceholderWhith("$material", material.name);
     }
 }

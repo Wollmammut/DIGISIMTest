@@ -9,6 +9,8 @@ public class SphereSize : Parameter<int>
     public static SphereSize MEDIUM;
     public static SphereSize BIG;
 
+    private string adjective;
+
     public enum EnumSphereSize
     {
         SMALL,
@@ -16,9 +18,9 @@ public class SphereSize : Parameter<int>
         BIG
     }
 
-    public SphereSize(string name, int value) : base(name, value)
+    public SphereSize(string name, string adjective, int value) : base(name, value)
     {
-
+        this.adjective = adjective;
     }
 
     public static SphereSize getSphereSizeFromEnum(SphereSize.EnumSphereSize e)
@@ -47,17 +49,22 @@ public class SphereSize : Parameter<int>
         }
     }
 
-    private static SphereSize addSphereSizeParameter(string name, int diameter)
+    private static SphereSize addSphereSizeParameter(string name, string adjective, int diameter)
     {
-        SphereSize s = new SphereSize(name, diameter);
+        SphereSize s = new SphereSize(name, adjective, diameter);
         SIZE_TO_NAME.Add(name,s);
         return s;
     }
 
+    public string getAdjective()
+    {
+        return adjective;
+    }
+    
     static SphereSize()
     {
-        SMALL = addSphereSizeParameter("kleine", 50);
-        MEDIUM = addSphereSizeParameter("mittlere", 100);
-        BIG = addSphereSizeParameter("große", 150);
+        SMALL = addSphereSizeParameter("klein", "kleine", 40);
+        MEDIUM = addSphereSizeParameter("mittel", "mittlere", 80);
+        BIG = addSphereSizeParameter("groß", "große", 120);
     }
 }
