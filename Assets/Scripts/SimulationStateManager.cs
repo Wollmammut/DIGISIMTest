@@ -81,7 +81,12 @@ public class SimulationStateManager : MonoBehaviour
 
     void activateNextStep()
     {
-        currentStep.setCorrespondingTextObjectActive(false);
+        SimulationStep oldStep = currentStep;
+        oldStep.setCorrespondingTextObjectActive(false);
+        if (oldStep.resetSimulationAfterStep)
+        {
+            getSimulationComponent().reset();
+        }
         currentStep = steps[++currentStepIndex];
         currentStep.correspondingTextObject.SetActive(true);
         currentStep.setProceedButtonText();

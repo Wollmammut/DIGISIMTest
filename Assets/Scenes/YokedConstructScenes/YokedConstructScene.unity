@@ -1353,6 +1353,10 @@ PrefabInstance:
       value: Weiter
       objectReference: {fileID: 0}
     - target: {fileID: 6037865810811443563, guid: 332c2d4a08f7df4aba447c2ec51c0bc8, type: 3}
+      propertyPath: steps.Array.data[6].proceedButtonText
+      value: Weiter
+      objectReference: {fileID: 0}
+    - target: {fileID: 6037865810811443563, guid: 332c2d4a08f7df4aba447c2ec51c0bc8, type: 3}
       propertyPath: steps.Array.data[0].correspondingTextObject
       value: 
       objectReference: {fileID: 1971106143}

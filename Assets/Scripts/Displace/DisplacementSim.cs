@@ -20,7 +20,9 @@ public abstract class DisplacementSim : Simulation
     Vector3 leftPlungerTargetPosition;
     Vector3 rightPlungerStartPosition;
     Vector3 rightPlungerTargetPosition;
+    float secondsToLowerSpheres = 5;
     float fractionOfLoweringTimePassed;
+    float secondsWaited = 0;
     static List<Run> runs = new List<Run>();
     static Dictionary<SimulationSelector.SimulationType, List<Run>> runsBySimulationType = new Dictionary<SimulationSelector.SimulationType, List<Run>>();
     protected Run currentRun;
@@ -28,6 +30,23 @@ public abstract class DisplacementSim : Simulation
     protected override void Start()
     {
         base.Start();
+        secondsToLowerSpheres = showAnimations ? 5 : 0;
+    }
+
+    void Update()
+    {
+        SimulationStateManager stateManager = GetComponent<SimulationStateManager>(); // TODO null check
+        SimulationStateManager.SimulationStates currentState = stateManager.getCurrentSimulationState();
+        if (currentState == SimulationStateManager.SimulationStates.ACTIVE)
+        {
+            float secondsToWait = secondsToLowerSpheres + 3.5f;
+            secondsWaited += Time.deltaTime;
+            if (secondsWaited > secondsToWait) // not a very good solution
+            {
+                showCursor();
+                stateManager.toggleSimulationActive();
+            }
+        }
     }
 
     public override void initialize()
@@ -98,20 +117,22 @@ public abstract class DisplacementSim : Simulation
 
     protected void lowerSpheres()
     {
-        float secondsToReachTarget = 10; // take 10 s to lower spheres;
-        fractionOfLoweringTimePassed += Time.deltaTime/secondsToReachTarget;
-        // if (fractionOfLoweringTimePassed > 1) // not a very good solution
-        // {
-        //     showCursor();
-        // }
-        // else
-        // {
-        //     hideCursor();
-        // }
-        leftSphere.transform.position = Vector3.Lerp(leftSphereStartPosition, leftSphereTargetPosition, fractionOfLoweringTimePassed);
-        rightSphere.transform.position = Vector3.Lerp(rightSphereStartPosition, rightSphereTargetPosition, fractionOfLoweringTimePassed);
-        leftPlunger.transform.position = Vector3.Lerp(leftPlungerStartPosition, leftPlungerTargetPosition, fractionOfLoweringTimePassed);
-        rightPlunger.transform.position = Vector3.Lerp(rightPlungerStartPosition, rightPlungerTargetPosition, fractionOfLoweringTimePassed);
+        hideCursor();
+        if (ShowAnimations())
+        {
+            fractionOfLoweringTimePassed += Time.deltaTime/secondsToLowerSpheres;
+            leftSphere.transform.position = Vector3.Lerp(leftSphereStartPosition, leftSphereTargetPosition, fractionOfLoweringTimePassed);
+            rightSphere.transform.position = Vector3.Lerp(rightSphereStartPosition, rightSphereTargetPosition, fractionOfLoweringTimePassed);
+            leftPlunger.transform.position = Vector3.Lerp(leftPlungerStartPosition, leftPlungerTargetPosition, fractionOfLoweringTimePassed);
+            rightPlunger.transform.position = Vector3.Lerp(rightPlungerStartPosition, rightPlungerTargetPosition, fractionOfLoweringTimePassed);
+        }
+        else
+        {
+            leftSphere.transform.position = leftSphereTargetPosition;
+            rightSphere.transform.position = rightSphereTargetPosition;
+            leftPlunger.transform.position = leftPlungerTargetPosition;
+            rightPlunger.transform.position = rightPlungerTargetPosition;
+        }
     }
 
     protected override void onActivation()
@@ -163,6 +184,24 @@ public abstract class DisplacementSim : Simulation
         }
     }
 
+    public void setToggleGroupInteractable(bool interactable, string groupName)
+    {
+        GameObject toggleGroupGO = GameObject.Find(groupName); 
+        if (toggleGroupGO == null)
+        {
+            return;
+        }
+        foreach(Transform child in toggleGroupGO.transform)
+        {
+            Toggle t = child.GetComponent<Toggle>();
+            if (t != null)
+            {
+                t.interactable = interactable;
+                Debug.Log(t.interactable);
+            }
+        }
+    }
+
     public void replaceKidsWordsPlaceholderWhith(string placeHolder, string textToDisplay)
     {
         TextMeshProUGUI text = panelForAIKidsWords.GetComponent<TextMeshProUGUI>(); // TODO null check
@@ -203,7 +242,6 @@ public abstract class DisplacementSim : Simulation
 
     protected static void setSphereMaterialParameter(GameObject sphere, SphereMaterial material)
     {
-        Debug.Log(material.name);
         SphereMaterialParameter materialParameter = sphere.GetComponent<SphereMaterialParameter>();
         if (materialParameter != null)
         {
@@ -267,5 +305,13 @@ public abstract class DisplacementSim : Simulation
         data.conditionActor = SimulationSelector.simulationActor;
         data.conditionActivity = SimulationSelector.simulationActivity;
         ParticipantDataLogger.saveParticipantData(data);
+    }
+
+    public override void reset()
+    {
+        setSphereSizeParameter(leftSphere, SphereSize.MEDIUM);
+        setSphereSizeParameter(rightSphere, SphereSize.MEDIUM);
+        setSphereMaterialParameter(leftSphere, SphereMaterial.WOOD);
+        setSphereMaterialParameter(rightSphere, SphereMaterial.WOOD);
     }
 }

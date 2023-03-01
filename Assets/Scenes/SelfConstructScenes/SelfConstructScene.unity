@@ -1377,6 +1377,14 @@ PrefabInstance:
       propertyPath: steps.Array.data[5].correspondingTextObject
       value: 
       objectReference: {fileID: 1167059939}
+    - target: {fileID: 6037865810811443563, guid: 332c2d4a08f7df4aba447c2ec51c0bc8, type: 3}
+      propertyPath: steps.Array.data[1].resetSimulationAfterStep
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6037865810811443563, guid: 332c2d4a08f7df4aba447c2ec51c0bc8, type: 3}
+      propertyPath: steps.Array.data[4].resetSimulationAfterStep
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6037865811245368640, guid: 332c2d4a08f7df4aba447c2ec51c0bc8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 53

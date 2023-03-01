@@ -7,7 +7,7 @@ public abstract class Simulation : MonoBehaviour
 {
     protected bool isActive = false;
     protected static bool fancyGraphics = true;
-
+    protected static bool showAnimations = false;
     // Start is called before the first frame update
     protected virtual void Start()
     {
@@ -23,6 +23,11 @@ public abstract class Simulation : MonoBehaviour
     {
         isActive = true;
         onActivation();
+    }
+
+    public virtual void reset()
+    {
+
     }
 
     protected abstract void onActivation();
@@ -46,5 +51,15 @@ public abstract class Simulation : MonoBehaviour
     public static void switchUseFancyGraphics()
     {
         fancyGraphics = !fancyGraphics;
+    }
+
+    public static bool ShowAnimations()
+    {
+        return showAnimations;
+    }
+
+    public static void SwitchShowAnimations()
+    {
+        showAnimations = !showAnimations;
     }
 }

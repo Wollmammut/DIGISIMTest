@@ -15,21 +15,35 @@ public class WaterLevelRiser : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        Vector3 otherLocalScale = other.transform.localScale;
-        Vector3 otherPosition = other.transform.position;
-        float depthBelowInitialWaterHeight = initialWaterHeight - (otherPosition.y - otherLocalScale.y / 2);
-
-        Vector3 dir = new Vector3(0, 1, 0);
-        Vector3 waterPosition = initialPosition + dir * depthBelowInitialWaterHeight / 2;
-        Vector3 waterLocalScale = initialScale + dir * depthBelowInitialWaterHeight;
-        float currentWaterHeight = waterPosition.y + waterLocalScale.y / 2;
-        float depthBelowCurrentWaterHeight = currentWaterHeight - (otherPosition.y - otherLocalScale.y / 2);
-
-        if (depthBelowCurrentWaterHeight < otherLocalScale.y)
+        if (Simulation.ShowAnimations())
         {
+            Vector3 otherLocalScale = other.transform.localScale;
+            Vector3 otherPosition = other.transform.position;
+            float depthBelowInitialWaterHeight = initialWaterHeight - (otherPosition.y - otherLocalScale.y / 2);
+
+            Vector3 dir = new Vector3(0, 1, 0);
+            Vector3 waterPosition = initialPosition + dir * depthBelowInitialWaterHeight / 2;
+            Vector3 waterLocalScale = initialScale + dir * depthBelowInitialWaterHeight;
+            float currentWaterHeight = waterPosition.y + waterLocalScale.y / 2;
+            float depthBelowCurrentWaterHeight = currentWaterHeight - (otherPosition.y - otherLocalScale.y / 2);
+
+            if (depthBelowCurrentWaterHeight < otherLocalScale.y)
+            {
+                transform.position = waterPosition;
+                transform.localScale = waterLocalScale;
+            }
+        }
+        else
+        {
+            Vector3 otherLocalScale = other.transform.localScale;
+            Vector3 otherPosition = other.transform.position;
+            Vector3 dir = new Vector3(0, 1, 0);
+            Vector3 waterPosition = initialPosition + dir * otherLocalScale.y / 4;
+            Vector3 waterLocalScale = initialScale + dir * otherLocalScale.y / 2;
             transform.position = waterPosition;
             transform.localScale = waterLocalScale;
         }
+
     }
 
     private void initializePositionAndScale()

@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 1376252630361756940}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 934.3, y: 471, z: 0}
-  m_LocalScale: {x: 500, y: 10, z: 10}
+  m_LocalScale: {x: 500, y: 5, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2496013353051321909}
@@ -124,7 +124,7 @@ Transform:
   m_GameObject: {fileID: 2710817455130744078}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 742.2001, y: 471, z: 0}
-  m_LocalScale: {x: 500, y: 10, z: 10}
+  m_LocalScale: {x: 500, y: 5, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2496013353051321909}
@@ -203,7 +203,6 @@ GameObject:
   - component: {fileID: 4221008910967818865}
   - component: {fileID: 8271328329401524458}
   - component: {fileID: 6115120719847071821}
-  - component: {fileID: 477906977190670547}
   m_Layer: 0
   m_Name: Quad
   m_TagString: Untagged
@@ -276,20 +275,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &477906977190670547
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2750009332520820945}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &4197547815192073473
 GameObject:
   m_ObjectHideFlags: 0
@@ -829,7 +814,6 @@ GameObject:
   - component: {fileID: 2360358566025596482}
   - component: {fileID: 6311726560044604768}
   - component: {fileID: 2836050513622652381}
-  - component: {fileID: 7852718196986090810}
   m_Layer: 0
   m_Name: Quad
   m_TagString: Untagged
@@ -902,20 +886,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &7852718196986090810
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6540481659251935048}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &7308329629635919395
 GameObject:
   m_ObjectHideFlags: 0
