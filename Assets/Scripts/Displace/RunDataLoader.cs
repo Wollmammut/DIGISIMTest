@@ -107,6 +107,7 @@ public class RunDataLoader : MonoBehaviour
         if (!File.Exists(filePath))
         {
             Debug.LogErrorFormat("Error reading {0}\nFile does not exist!", filePath); // TODO show error box
+            return null;
         }
 
         using (var file = File.Open(filePath, FileMode.Open, FileAccess.Read, FileShare.Read))

@@ -30,7 +30,7 @@ public abstract class DisplacementSim : Simulation
     protected override void Start()
     {
         base.Start();
-        secondsToLowerSpheres = showAnimations ? 5 : 0;
+        //secondsToLowerSpheres = showAnimations ? 5 : 0;
     }
 
     void Update()
