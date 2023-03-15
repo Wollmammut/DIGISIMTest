@@ -2586,8 +2586,9 @@ MonoBehaviour:
   m_text: "Hallo und herzlich willkommen zu unserer Studie. Im Folgenden sollst du
     herausfinden, wovon es abh\xE4ngt, wie viel Wasser ein Objekt verdr\xE4ngt. Um
     etwas dar\xFCber herauszufinden, wirst du vorhersagen, welche von zwei Kugeln
-    mehr Wasser verdr\xE4ngt.\nDaraufhin kannst du beobachten, wie viel Wasser von
-    den Kugeln tats\xE4chlich verdr\xE4ngt wird. Du wirst immer zwei Kugeln sehen."
+    mehr Wasser verdr\xE4ngt. Daraufhin kannst du beobachten, wie viel Wasser von
+    den Kugeln tats\xE4chlich verdr\xE4ngt wird. So kannst du deine Annahmen pr\xFCfen.
+    Bedenke, dass auch eine falsche Vorhersage hilfreich f\xFCr dich sein kann."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

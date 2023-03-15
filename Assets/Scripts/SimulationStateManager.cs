@@ -10,11 +10,15 @@ public class SimulationStateManager : MonoBehaviour
 {
     private static int runNumber = 0;
     private static int maxNumberOfRuns = 1;
-    public static SimulationStates currentSimulationState = SimulationStates.PREVIEW;
-    public List<SimulationStep> steps = new List<SimulationStep>();
+    private static SimulationStates currentSimulationState = SimulationStates.PREVIEW;
+    [SerializeField]
+    private List<SimulationStep> steps = new List<SimulationStep>();
+    [SerializeField]
+    private List<SimulationStep> trainingSteps = new List<SimulationStep>();
+    private List<SimulationStep> activeSteps = new List<SimulationStep>();
     protected static int currentStepIndex = 0;
     protected SimulationStep currentStep;
-    public int stepIndexToSwitchToAfterInstructions;
+    protected static bool isTrainingRun = false;
 
     [Serializable]
     public enum SimulationStates
@@ -28,37 +32,35 @@ public class SimulationStateManager : MonoBehaviour
 
     protected void Start()
     {
+        activeSteps = isTrainingRun ? trainingSteps: steps;
+        foreach (SimulationStep step in trainingSteps)
+        {
+            GameObject g = step.correspondingTextObject;
+            g.SetActive(false);
+        }
         foreach (SimulationStep step in steps)
         {
             GameObject g = step.correspondingTextObject;
             g.SetActive(false);
         }
-        if (steps.Count > 0)
+        if (activeSteps.Count > 0)
         {
-            if (runNumber > 0)
-            {
-                currentStepIndex = stepIndexToSwitchToAfterInstructions - 1;
-            }
-            currentStep = steps[currentStepIndex];
+            currentStep = activeSteps[currentStepIndex];
             currentStep.setProceedButtonText();
             currentStep.setCorrespondingTextObjectActive(true);
             currentSimulationState = currentStep.currentState;
         }
         initializeSimulation();
-        if (currentSimulationState == SimulationStates.INTERMISSION)
-        {
-            activateNextStep();
-        }
     }
 
     public bool hasNextStep()
     {
-        return steps.Count - 1 > currentStepIndex;
+        return activeSteps.Count - 1 > currentStepIndex;
     }
 
     void deactivateAllInstructions()
     {
-        foreach (SimulationStep step in steps)
+        foreach (SimulationStep step in activeSteps)
         {
             step.correspondingTextObject.SetActive(false);
         }
@@ -83,17 +85,14 @@ public class SimulationStateManager : MonoBehaviour
     {
         SimulationStep oldStep = currentStep;
         oldStep.setCorrespondingTextObjectActive(false);
-        if (oldStep.resetSimulationAfterStep)
-        {
-            getSimulationComponent().reset();
-        }
-        currentStep = steps[++currentStepIndex];
+        currentStep = activeSteps[++currentStepIndex];
         currentStep.correspondingTextObject.SetActive(true);
         currentStep.setProceedButtonText();
         SimulationStates oldState = currentSimulationState;
         currentSimulationState = currentStep.currentState;
         Simulation simulation = getSimulationComponent();
         simulation.onSimulationStateChanged(oldState, currentSimulationState);
+        simulation.onStepAdvancement(currentStep, currentStepIndex);
     }
 
     public void toggleSimulationActive()
@@ -105,28 +104,42 @@ public class SimulationStateManager : MonoBehaviour
         if (hasNextStep())
         {
             activateNextStep();
+        }
+        else
+        {
+            advenceToNextRun();
+        }
+    }
 
-            if(currentSimulationState == SimulationStates.INTERMISSION)
+    public void advenceToNextRun()
+    {
+        currentStepIndex = 0;
+        Simulation simulation = getSimulationComponent();
+        simulation.saveData();
+        ClickLogger.clear();
+        if (maxNumberOfRuns - 1 > runNumber)
+        {
+            currentStepIndex = 0;
+            ++runNumber;
+            if (isTrainingRun)
             {
-                //currentSimulationState = SimulationStates.PAUSED;
-                SceneManager.LoadScene("IntermissionScene");// TODO errof if scenetowtichto == null
+                SimulationSelector.continueToSimulation(true);
+            }
+            else
+            {
+                SceneManager.LoadScene("RunScene");// TODO errof if scenetowtichto == null
             }
         }
         else
         {
-            currentStepIndex = 0;
-            Simulation simulation = getSimulationComponent();
-            simulation.saveData();
-            ClickLogger.clear();
-            if (maxNumberOfRuns - 1 > runNumber)
+            runNumber = 0;
+            if (isTrainingRun)
             {
-                currentStepIndex = 0;
-                ++runNumber;
-                SceneManager.LoadScene("RunScene");// TODO errof if scenetowtichto == null
+                isTrainingRun = false;
+                SceneManager.LoadScene("IntermissionScene");// TODO errof if scenetowtichto == null
             }
             else
             {
-                runNumber = 0;
                 SceneManager.LoadScene("EndScene");// TODO errof if scenetowtichto == null
             }
         }
@@ -155,5 +168,20 @@ public class SimulationStateManager : MonoBehaviour
     public static void setMaxNumberOfRuns(int maxNumber)
     {
         maxNumberOfRuns = maxNumber;
+    }
+
+    public static void setTrainingMode(bool training)
+    {
+        isTrainingRun = training;
+    }
+
+    public bool isTrainingMode()
+    {
+        return isTrainingRun;
+    }
+
+    public int getNumberOfSteps()
+    {
+        return activeSteps.Count;
     }
 }

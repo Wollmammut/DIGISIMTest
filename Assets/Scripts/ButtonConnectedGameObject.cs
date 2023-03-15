@@ -12,7 +12,7 @@ public class ButtonConnectedGameObject<T> : MonoBehaviour
         
     }
 
-    public void onClick()
+    public virtual void onClick()
     {
         ParameterSetter<T> parameter = connectedGameObject.GetComponent<ParameterSetter<T>>();
         // TODO error when connectedGameObject is null/not set in unity inspector

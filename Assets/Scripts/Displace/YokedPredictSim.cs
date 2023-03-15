@@ -13,7 +13,8 @@ public class YokedPredictSim : YokedSim
     public override void initialize()
     {
         base.initialize();
-        showSizeAndMaterialToggles(false);
+        showSizeToggles(false);
+        showMaterialToggles(false);
         showPredictButtons(true);
         SpherePredictionSelector.Prediction yokedPrediction = SpherePredictionSelector.Prediction.UNSURE;
         string toggleName = getToggleNameForPrediction(yokedPrediction);

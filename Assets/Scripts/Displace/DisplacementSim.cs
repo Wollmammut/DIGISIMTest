@@ -12,6 +12,9 @@ public abstract class DisplacementSim : Simulation
     public GameObject rightSphere;
     protected GameObject leftPlunger;
     protected GameObject rightPlunger;
+    protected GameObject predictButtons;
+    protected GameObject sizeButtons;
+    protected GameObject materialButtons;
     Vector3 leftSphereStartPosition;
     Vector3 leftSphereTargetPosition;
     Vector3 rightSphereStartPosition;
@@ -25,7 +28,10 @@ public abstract class DisplacementSim : Simulation
     float secondsWaited = 0;
     static List<Run> runs = new List<Run>();
     static Dictionary<SimulationSelector.SimulationType, List<Run>> runsBySimulationType = new Dictionary<SimulationSelector.SimulationType, List<Run>>();
+    static Dictionary<SimulationSelector.SimulationType, List<Run>> trainingRunsBySimulationType = new Dictionary<SimulationSelector.SimulationType, List<Run>>();
+
     protected Run currentRun;
+    protected bool isTrainingRun;
 
     protected override void Start()
     {
@@ -55,13 +61,19 @@ public abstract class DisplacementSim : Simulation
         Run run = new Run();
         runs.Add(run);
         // TODO testing end
-
+        isTrainingRun = getStateManager().isTrainingMode();
         currentRun = getCurrentRun();
 
-        setSphereSizeParameter(leftSphere, SphereSize.MEDIUM);
-        setSphereSizeParameter(rightSphere, SphereSize.MEDIUM);
-        setSphereMaterialParameter(leftSphere, SphereMaterial.WOOD);
-        setSphereMaterialParameter(rightSphere, SphereMaterial.WOOD);
+        // setSphereSizeParameter(leftSphere, SphereSize.MEDIUM);
+        // setSphereSizeParameter(rightSphere, SphereSize.MEDIUM);
+        // setSphereMaterialParameter(leftSphere, SphereMaterial.WOOD);
+        // setSphereMaterialParameter(rightSphere, SphereMaterial.WOOD);
+
+        setSphereSizeParameter(leftSphere, currentRun.sizeLeft);
+        setSphereSizeParameter(rightSphere, currentRun.sizeRight);
+
+        setSphereMaterialParameter(leftSphere, currentRun.materialLeft);
+        setSphereMaterialParameter(rightSphere, currentRun.materialRight);
 
         leftSphereStartPosition = leftSphere.transform.position;
         leftSphereTargetPosition = leftSphereStartPosition - new Vector3(0, 150, 0);
@@ -74,6 +86,10 @@ public abstract class DisplacementSim : Simulation
         leftPlungerTargetPosition = leftPlungerStartPosition - new Vector3(0, 150, 0);
         rightPlungerStartPosition = rightPlunger.transform.position;
         rightPlungerTargetPosition = rightPlungerStartPosition - new Vector3(0, 150, 0);
+
+        predictButtons = GameObject.Find("PredictButtons");
+        sizeButtons = GameObject.Find("SizeToggleGroup");
+        materialButtons = GameObject.Find("MaterialToggleGroup");
     }
 
     public Run getCurrentRun()
@@ -90,7 +106,9 @@ public abstract class DisplacementSim : Simulation
     {
         SimulationSelector.SimulationType currentSimulationType = SimulationSelector.currentSimulationType;
         List<Run> runs;
-        if (runsBySimulationType.TryGetValue(currentSimulationType, out runs))
+
+        Dictionary<SimulationSelector.SimulationType, List<Run>> runsToGetFrom = isTrainingRun ? trainingRunsBySimulationType : runsBySimulationType;
+        if (runsToGetFrom.TryGetValue(currentSimulationType, out runs))
         {
             if (runs.Count > runNumber)
             {
@@ -141,19 +159,19 @@ public abstract class DisplacementSim : Simulation
 
     protected void showPredictButtons(bool show)
     {
-        GameObject toggles = GameObject.Find("PredictButtons");
-        if(toggles == null)
+        if(predictButtons == null)
         {
             //TODO error
         }
         else
         {
-            toggles.SetActive(show);
+            if (predictButtons.activeSelf == show) return;
+            predictButtons.SetActive(show);
             if (show)
             {
-                ToggleGroup toggleGroup = toggles.GetComponent<ToggleGroup>();// TODO null check
+                ToggleGroup toggleGroup = predictButtons.GetComponent<ToggleGroup>();// TODO null check
                 toggleGroup.SetAllTogglesOff();
-                foreach(Transform child in toggles.transform)
+                foreach(Transform child in predictButtons.transform)
                 {
                     Toggle t = child.GetComponent<Toggle>();
                     t.SetIsOnWithoutNotify(false);
@@ -162,23 +180,37 @@ public abstract class DisplacementSim : Simulation
         }
     }
 
-    protected void showSizeAndMaterialToggles(bool show)
+    protected void showSizeToggles(bool show)
     {
-        GameObject toggles = GameObject.Find("SizeAndMaterialToggles");
-        if(toggles == null)
+        if(sizeButtons == null)
         {
             //TODO error
         }
         else
         {
-            toggles.SetActive(show);
+            if (sizeButtons.activeSelf == show) return;
+            sizeButtons.SetActive(show);
             if (show)
             {
-                GameObject toggleGroupGO = GameObject.Find("SizeToggleGroup"); // TODO null check
-                ToggleGroup toggleGroup = toggleGroupGO.GetComponent<ToggleGroup>();// TODO null check
+                ToggleGroup toggleGroup = sizeButtons.GetComponent<ToggleGroup>();// TODO null check
                 toggleGroup.SetAllTogglesOff();
-                toggleGroupGO = GameObject.Find("MaterialToggleGroup"); // TODO null check
-                toggleGroup = toggleGroupGO.GetComponent<ToggleGroup>();// TODO null check
+            }
+        }
+    }
+
+    public void showMaterialToggles(bool show)
+    {
+        if(materialButtons == null)
+        {
+            //TODO error
+        }
+        else
+        {
+            if (materialButtons.activeSelf == show) return;
+            materialButtons.SetActive(show);
+            if (show)
+            {
+                ToggleGroup toggleGroup = materialButtons.GetComponent<ToggleGroup>();// TODO null check
                 toggleGroup.SetAllTogglesOff();
             }
         }
@@ -227,6 +259,11 @@ public abstract class DisplacementSim : Simulation
         }
     }
 
+    public override void onStepAdvancement(SimulationStep step, int currentStepIndex)
+    {
+
+    }
+
     protected static void setSphereSizeParameter(GameObject sphere, SphereSize size)
     {
         SphereSizeParameter sizeParameter = sphere.GetComponent<SphereSizeParameter>();
@@ -253,15 +290,14 @@ public abstract class DisplacementSim : Simulation
         }
     }
 
-    public static void addNewRunForSimulationType(SimulationSelector.SimulationType type, Run run)
+    public static void addTainingRuns(Dictionary<SimulationSelector.SimulationType, List<Run>> runsIn)
     {
-        List<Run> runs;
-        if (!runsBySimulationType.TryGetValue(type, out runs))
-        {
-            runs = new List<Run>();
-            runsBySimulationType.Add(type, runs);
-        }
-        runs.Add(run);
+        trainingRunsBySimulationType = runsIn;
+    }
+
+    public static void addRuns(Dictionary<SimulationSelector.SimulationType, List<Run>> runsIn)
+    {
+        runsBySimulationType = runsIn;
     }
 
     protected virtual bool isToggleGroupActive(string groupName)
@@ -313,5 +349,10 @@ public abstract class DisplacementSim : Simulation
         setSphereSizeParameter(rightSphere, SphereSize.MEDIUM);
         setSphereMaterialParameter(leftSphere, SphereMaterial.WOOD);
         setSphereMaterialParameter(rightSphere, SphereMaterial.WOOD);
+    }
+
+    protected SimulationStateManager getStateManager()
+    {
+        return gameObject.GetComponent<SimulationStateManager>();
     }
 }

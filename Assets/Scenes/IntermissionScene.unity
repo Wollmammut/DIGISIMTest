@@ -478,8 +478,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Du wirst nun mehrere Durchg\xE4nge dieser Aufgabe machen. Wenn du Fragen
-    hast wende dich an die Versuchsleiterin. "
+  m_text: 'Nun beginnt das Experiment. Wenn du Fragen hast wende dich an die Versuchsleiterin. '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -804,7 +803,7 @@ MonoBehaviour:
       - m_Target: {fileID: 1531051507}
         m_TargetAssemblyTypeName: SimulationSelector, Assembly-CSharp
         m_MethodName: continueToSimulation
-        m_Mode: 1
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

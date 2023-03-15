@@ -38,6 +38,11 @@ public abstract class Simulation : MonoBehaviour
     {
 
     }
+    
+    public virtual void onStepAdvancement(SimulationStep step, int currentStepIndex)
+    {
+
+    }
 
     public abstract void saveData();
     

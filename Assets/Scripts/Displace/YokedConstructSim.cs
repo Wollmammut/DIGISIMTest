@@ -7,7 +7,8 @@ public class YokedConstructSim : YokedSim
     public override void initialize()
     {
         base.initialize();
-        showSizeAndMaterialToggles(true);
+        showSizeToggles(true);
+        showMaterialToggles(true);
         showPredictButtons(false);
         setSizeToggleAsPointerTarget(SphereSize.MEDIUM);
         setMaterialToggleAsPointerTarget(SphereMaterial.STYROFOAM);

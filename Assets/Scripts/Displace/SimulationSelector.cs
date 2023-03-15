@@ -107,8 +107,9 @@ public class SimulationSelector : MonoBehaviour
         setSceneNames();
         SceneManager.LoadScene(currentSimulationScenes.instructionScene);
     }
-    public static void continueToSimulation()
+    public static void continueToSimulation(bool trainingMode)
     {
+        SimulationStateManager.setTrainingMode(trainingMode);
         setSceneNames();
         SceneManager.LoadScene(currentSimulationScenes.simulationScene);
     }

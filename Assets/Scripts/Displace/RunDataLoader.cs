@@ -28,22 +28,34 @@ public class RunDataLoader : MonoBehaviour
 
     public void loadRunData()
     {
-        List<string> readText = readRunInputs();
+        List<string> readText = readRunInputs("input");
         if (readText == null || (readText.Count % NUM_COLUMS) != 0)
         {
             //TOTO error
         }
         else
         {
-            parseInputStings(readText);
+            Dictionary<SimulationSelector.SimulationType, List<Run>> runsBySimulationType = parseInputStings(readText);
+            DisplacementSim.addRuns(runsBySimulationType);
+        }
+        List<string> readTrialText = readRunInputs("trial_input");
+        if (readTrialText == null || (readTrialText.Count % NUM_COLUMS) != 0)
+        {
+            //TOTO error
+        }
+        else
+        {
+            Dictionary<SimulationSelector.SimulationType, List<Run>> trainingRunsBySimulationType = parseInputStings(readTrialText);
+            DisplacementSim.addTainingRuns(trainingRunsBySimulationType);
         }
     }
 
-    private void parseInputStings(List<string> inputs)
+    private Dictionary<SimulationSelector.SimulationType, List<Run>> parseInputStings(List<string> inputs)
     {
         int row = 1;
         int numRows = inputs.Count / NUM_COLUMS;
         int loadedRuns = 0;
+        Dictionary<SimulationSelector.SimulationType, List<Run>> runsBySimulationType = new Dictionary<SimulationSelector.SimulationType, List<Run>>();
         while (row < numRows)
         {
             List<string> rowData = inputs.GetRange(NUM_COLUMS * row, NUM_COLUMS);
@@ -84,13 +96,26 @@ public class RunDataLoader : MonoBehaviour
                 Run runToAdd = new Run();
                 if (runToAdd.tryInitializeFromStrings(rowData))
                 {
-                    DisplacementSim.addNewRunForSimulationType(simulationType, runToAdd);
+                    addNewRunForSimulationType(runsBySimulationType, simulationType, runToAdd);
                     ++loadedRuns;
                 }
             }
             ++row;
         }
         Debug.Log("Loaded trial data for " + loadedRuns + " trials");
+        return runsBySimulationType;
+    }
+
+
+    private static void addNewRunForSimulationType(Dictionary<SimulationSelector.SimulationType, List<Run>> runsBySimulationType, SimulationSelector.SimulationType type, Run run)
+    {
+        List<Run> runs;
+        if (!runsBySimulationType.TryGetValue(type, out runs))
+        {
+            runs = new List<Run>();
+            runsBySimulationType.Add(type, runs);
+        }
+        runs.Add(run);
     }
 
     public static bool contrainsString(string source, string stringToContain)
@@ -98,11 +123,11 @@ public class RunDataLoader : MonoBehaviour
         return source.IndexOf(stringToContain, StringComparison.OrdinalIgnoreCase) >= 0;
     }
 
-    private List<string> readRunInputs()
+    private List<string> readRunInputs(String fileName)
     {
         List<string> values = new List<string>();
 
-        var filePath = Path.Combine(Application.persistentDataPath, "input.csv");
+        var filePath = Path.Combine(Application.persistentDataPath, fileName + ".csv");
 
         if (!File.Exists(filePath))
         {
