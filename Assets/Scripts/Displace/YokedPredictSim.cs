@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro; 
 
 public class YokedPredictSim : YokedSim
 {
@@ -16,35 +17,28 @@ public class YokedPredictSim : YokedSim
         showSizeToggles(false);
         showMaterialToggles(false);
         showPredictButtons(true);
-        SpherePredictionSelector.Prediction yokedPrediction = SpherePredictionSelector.Prediction.UNSURE;
+        // SpherePredictionSelector.Prediction yokedPrediction = SpherePredictionSelector.Prediction.UNSURE;
+        // string toggleName = getToggleNameForPrediction(yokedPrediction);
+        // YokedSim.YokedButtonTarget buttonTarget = getButtonTargetForButtonName(toggleName);
+        // setToggleAsTarget(buttonTarget);
+        // buttonTargets.Add(buttonTarget);
+
+        SpherePredictionSelector.Prediction yokedPrediction = currentRun.yokedPrediction;
         string toggleName = getToggleNameForPrediction(yokedPrediction);
         YokedSim.YokedButtonTarget buttonTarget = getButtonTargetForButtonName(toggleName);
         setToggleAsTarget(buttonTarget);
         buttonTargets.Add(buttonTarget);
-    }
+        //setTextForAIKidsWords(getTextForPrediction(yokedPrediction));
 
-    string getToggleNameForPrediction(SpherePredictionSelector.Prediction prediction)
-    {
-        string toggleName = "";
-        switch(prediction)
+        if (SimulationStateManager.getCurrentRunNumber() != 0)
         {
-            case SpherePredictionSelector.Prediction.DEFINITELY_LEFT:
-            toggleName = "PredictDefinitelyLeftToggle";
-            break; 
-            case SpherePredictionSelector.Prediction.LEFT:
-            toggleName = "PredictLeftToggle";
-            break; 
-            case SpherePredictionSelector.Prediction.UNSURE:
-            toggleName = "PredictUnsureToggle";
-            break; 
-            case SpherePredictionSelector.Prediction.RIGHT:
-            toggleName = "PredictRightToggle";
-            break; 
-            case SpherePredictionSelector.Prediction.DEFINITELY_RIGHT:
-            toggleName = "PredictDefinitelyRightToggle";
-            break; 
+            GameObject instructionPanel = GameObject.Find("First Instruction");
+            if (instructionPanel != null)
+            {
+                TextMeshProUGUI text = instructionPanel.GetComponent<TextMeshProUGUI>();
+                text.text = "Als Übung kannst du das Kind dabei beobachten wie es eine Vorhersage trifft.";
+            }
         }
-        return toggleName;
     }
 
     string getTextForPrediction(SpherePredictionSelector.Prediction prediction)

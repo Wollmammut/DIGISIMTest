@@ -181,8 +181,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Wenn du auf \u201EAusprobieren\u201C klickst, siehst du, wie die Kugeln
-    unter Wasser gedr\xFCckt werden. "
+  m_text: "Je mehr Wasser verdr\xE4ngt wurde, desto h\xF6her steigt das Wasser."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -370,7 +369,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Je mehr Wasser verdr\xE4ngt wurde, desto h\xF6her steigt das Wasser."
+  m_text: "Versuche herauszufinden, wovon es abh\xE4ngt, wie viel Wasser die Kugeln
+    verdr\xE4ngen. Beobachte daf\xFCr das Kind, wie es vorhersagt, welche der beiden
+    Kugeln mehr Wasser verdr\xE4ngt.\nAnhand des Ergebnisses kannst du deine Annahmen
+    pr\xFCfen."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -734,7 +736,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Ich denke, die $prediction Kugel verdr\xE4ngt mehr Wasser."
+  m_text: "Klicke auf \u201Eweiter\u201C. Dann siehst du, wie du Kugeln unter Wasser
+    gedr\xFCckt werden."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1268,7 +1271,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6037865810811443563, guid: 332c2d4a08f7df4aba447c2ec51c0bc8, type: 3}
       propertyPath: steps.Array.size
-      value: 6
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6037865810811443563, guid: 332c2d4a08f7df4aba447c2ec51c0bc8, type: 3}
+      propertyPath: trainingSteps.Array.size
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6037865810811443563, guid: 332c2d4a08f7df4aba447c2ec51c0bc8, type: 3}
       propertyPath: steps.Array.data[0].nextState
@@ -1284,7 +1291,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6037865810811443563, guid: 332c2d4a08f7df4aba447c2ec51c0bc8, type: 3}
       propertyPath: steps.Array.data[1].currentState
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6037865810811443563, guid: 332c2d4a08f7df4aba447c2ec51c0bc8, type: 3}
       propertyPath: steps.Array.data[2].currentState
@@ -1292,11 +1299,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6037865810811443563, guid: 332c2d4a08f7df4aba447c2ec51c0bc8, type: 3}
       propertyPath: steps.Array.data[3].currentState
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6037865810811443563, guid: 332c2d4a08f7df4aba447c2ec51c0bc8, type: 3}
       propertyPath: steps.Array.data[4].currentState
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6037865810811443563, guid: 332c2d4a08f7df4aba447c2ec51c0bc8, type: 3}
       propertyPath: steps.Array.data[5].currentState
@@ -1320,7 +1327,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6037865810811443563, guid: 332c2d4a08f7df4aba447c2ec51c0bc8, type: 3}
       propertyPath: steps.Array.data[1].proceedButtonText
-      value: Ausprobieren
+      value: Weiter
       objectReference: {fileID: 0}
     - target: {fileID: 6037865810811443563, guid: 332c2d4a08f7df4aba447c2ec51c0bc8, type: 3}
       propertyPath: steps.Array.data[2].proceedButtonText
@@ -1332,24 +1339,32 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6037865810811443563, guid: 332c2d4a08f7df4aba447c2ec51c0bc8, type: 3}
       propertyPath: steps.Array.data[4].proceedButtonText
-      value: Ausprobieren
+      value: Weiter
       objectReference: {fileID: 0}
     - target: {fileID: 6037865810811443563, guid: 332c2d4a08f7df4aba447c2ec51c0bc8, type: 3}
       propertyPath: steps.Array.data[5].proceedButtonText
       value: Weiter
       objectReference: {fileID: 0}
     - target: {fileID: 6037865810811443563, guid: 332c2d4a08f7df4aba447c2ec51c0bc8, type: 3}
+      propertyPath: trainingSteps.Array.data[0].currentState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6037865810811443563, guid: 332c2d4a08f7df4aba447c2ec51c0bc8, type: 3}
+      propertyPath: trainingSteps.Array.data[1].currentState
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6037865810811443563, guid: 332c2d4a08f7df4aba447c2ec51c0bc8, type: 3}
       propertyPath: steps.Array.data[0].correspondingTextObject
       value: 
-      objectReference: {fileID: 1971106143}
+      objectReference: {fileID: 675894700}
     - target: {fileID: 6037865810811443563, guid: 332c2d4a08f7df4aba447c2ec51c0bc8, type: 3}
       propertyPath: steps.Array.data[1].correspondingTextObject
       value: 
-      objectReference: {fileID: 9009340}
+      objectReference: {fileID: 1471254924}
     - target: {fileID: 6037865810811443563, guid: 332c2d4a08f7df4aba447c2ec51c0bc8, type: 3}
       propertyPath: steps.Array.data[2].correspondingTextObject
       value: 
-      objectReference: {fileID: 675894700}
+      objectReference: {fileID: 1471254924}
     - target: {fileID: 6037865810811443563, guid: 332c2d4a08f7df4aba447c2ec51c0bc8, type: 3}
       propertyPath: steps.Array.data[3].correspondingTextObject
       value: 
@@ -1366,6 +1381,22 @@ PrefabInstance:
       propertyPath: steps.Array.data[6].correspondingTextObject
       value: 
       objectReference: {fileID: 1471254924}
+    - target: {fileID: 6037865810811443563, guid: 332c2d4a08f7df4aba447c2ec51c0bc8, type: 3}
+      propertyPath: trainingSteps.Array.data[0].proceedButtonText
+      value: Weiter
+      objectReference: {fileID: 0}
+    - target: {fileID: 6037865810811443563, guid: 332c2d4a08f7df4aba447c2ec51c0bc8, type: 3}
+      propertyPath: trainingSteps.Array.data[1].proceedButtonText
+      value: Weiter
+      objectReference: {fileID: 0}
+    - target: {fileID: 6037865810811443563, guid: 332c2d4a08f7df4aba447c2ec51c0bc8, type: 3}
+      propertyPath: trainingSteps.Array.data[0].correspondingTextObject
+      value: 
+      objectReference: {fileID: 1971106143}
+    - target: {fileID: 6037865810811443563, guid: 332c2d4a08f7df4aba447c2ec51c0bc8, type: 3}
+      propertyPath: trainingSteps.Array.data[1].correspondingTextObject
+      value: 
+      objectReference: {fileID: 9009340}
     - target: {fileID: 6037865810968653397, guid: 332c2d4a08f7df4aba447c2ec51c0bc8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 556

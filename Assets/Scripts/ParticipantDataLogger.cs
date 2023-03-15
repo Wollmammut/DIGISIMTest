@@ -78,7 +78,7 @@ public class ParticipantDataLogger : MonoBehaviour
 
     public static bool isAllDataSet()
     {
-        return continueFlag == (AGE_FLAG | RUNS_FLAG | VPN_FLAG);
+        return continueFlag == (AGE_FLAG | VPN_FLAG);
     }
 
     public static string getNameForSex(ParticipantSex participantSex)

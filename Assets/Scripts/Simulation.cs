@@ -48,6 +48,11 @@ public abstract class Simulation : MonoBehaviour
     
     public abstract bool canProceed();
 
+    public virtual bool shouldForceAdvanceRun()
+    {
+        return false;
+    }
+
     public static bool useFancyGraphics()
     {
         return fancyGraphics;
@@ -66,5 +71,10 @@ public abstract class Simulation : MonoBehaviour
     public static void SwitchShowAnimations()
     {
         showAnimations = !showAnimations;
+    }
+
+    public virtual int getNumberOfRuns()
+    {
+        return 0;
     }
 }

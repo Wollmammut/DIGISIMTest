@@ -109,15 +109,44 @@ public class YokedSim : DisplacementSim
         //SphereMaterialParameter materialParameterLeft = leftSphere.GetComponent<SphereMaterialParameter>();
         //SphereMaterialParameter materialParameterRight = rightSphere.GetComponent<SphereMaterialParameter>();
 
-        buttonTargets.Clear(); 
-        buttonTargetsIndex = 0;
+        resetButtonTargets(); 
         setupSimulationWithValuesFromCurrentRun();
         setToggleAsTarget(buttonTargets[0]);
         }
     }
 
+    protected void resetButtonTargets()
+    {
+        buttonTargets.Clear(); 
+        buttonTargetsIndex = 0;
+    }
+
     protected virtual void setupSimulationWithValuesFromCurrentRun()
     {
 
+    }
+
+    protected string getToggleNameForPrediction(SpherePredictionSelector.Prediction prediction)
+    {
+        string toggleName = "";
+        switch(prediction)
+        {
+            case SpherePredictionSelector.Prediction.DEFINITELY_LEFT:
+            toggleName = "PredictDefinitelyLeftToggle";
+            break; 
+            case SpherePredictionSelector.Prediction.LEFT:
+            toggleName = "PredictLeftToggle";
+            break; 
+            case SpherePredictionSelector.Prediction.UNSURE:
+            toggleName = "PredictUnsureToggle";
+            break; 
+            case SpherePredictionSelector.Prediction.RIGHT:
+            toggleName = "PredictRightToggle";
+            break; 
+            case SpherePredictionSelector.Prediction.DEFINITELY_RIGHT:
+            toggleName = "PredictDefinitelyRightToggle";
+            break; 
+        }
+        return toggleName;
     }
 }

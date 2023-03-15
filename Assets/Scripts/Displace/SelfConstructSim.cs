@@ -17,7 +17,7 @@ public class SelfConstructSim : DisplacementSim
         currentRun = getRunForRunNumber(currentRunNumber); // TODO null check
         //constructTask.setTaskSymbol(currentRun.constructTask);
 
-        int maxNumOfRuns = SimulationStateManager.getMaxNumberOfRuns();
+        int maxNumOfRuns = this.getNumberOfRuns();
         if (isTrainingRun)
         {
             showSizeToggles(false);
@@ -25,6 +25,8 @@ public class SelfConstructSim : DisplacementSim
             showPredictButtons(true);
             if (currentRunNumber >= maxNumOfRuns / 2)
             {
+                setSphereMaterialParameter(leftSphere, SphereMaterial.NONE);
+                showLeftSphereAndPlunger(false);
                 showSizeToggles(true);
                 showPredictButtons(false);
                 GameObject instructionPanel = GameObject.Find("First Instruction");
@@ -42,13 +44,32 @@ public class SelfConstructSim : DisplacementSim
                     
                 }
             }
+            else if (currentRunNumber != 0)
+            {
+                GameObject instructionPanel = GameObject.Find("First Instruction");
+                if (instructionPanel != null)
+                {
+                    TextMeshProUGUI text = instructionPanel.GetComponent<TextMeshProUGUI>();
+                    text.text = "Du kannst nun üben, wie man eine Vorhersage trifft.";
+                }
+            }
         }
         else
         {
+            setSphereMaterialParameter(leftSphere, SphereMaterial.NONE);
+            showLeftSphereAndPlunger(false);
             showSizeToggles(true);
             showMaterialToggles(false);
             showPredictButtons(false);
         }
+    }
+
+    public override bool shouldForceAdvanceRun()
+    {
+        int currentRunNumber = SimulationStateManager.getCurrentRunNumber();
+        currentRun = getRunForRunNumber(currentRunNumber); // TODO null check
+        int maxNumOfRuns = this.getNumberOfRuns();
+        return isTrainingRun && currentRunNumber >= maxNumOfRuns / 2;
     }
 
     public override void onStepAdvancement(SimulationStep step, int currentStepIndex)

@@ -14,6 +14,7 @@ public class SphereSizeChanger : ButtonConnectedGameObject<SphereSize.EnumSphere
             if (sim != null)
             {
                 sim.showMaterialToggles(true);
+                sim.showLeftSphereAndPlunger(true);
             }
         }
     }

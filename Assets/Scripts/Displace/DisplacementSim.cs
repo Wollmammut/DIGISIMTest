@@ -27,7 +27,7 @@ public abstract class DisplacementSim : Simulation
     float fractionOfLoweringTimePassed;
     float secondsWaited = 0;
     static List<Run> runs = new List<Run>();
-    static Dictionary<SimulationSelector.SimulationType, List<Run>> runsBySimulationType = new Dictionary<SimulationSelector.SimulationType, List<Run>>();
+    public static Dictionary<SimulationSelector.SimulationType, List<Run>> runsBySimulationType = new Dictionary<SimulationSelector.SimulationType, List<Run>>();
     static Dictionary<SimulationSelector.SimulationType, List<Run>> trainingRunsBySimulationType = new Dictionary<SimulationSelector.SimulationType, List<Run>>();
 
     protected Run currentRun;
@@ -354,5 +354,24 @@ public abstract class DisplacementSim : Simulation
     protected SimulationStateManager getStateManager()
     {
         return gameObject.GetComponent<SimulationStateManager>();
+    }
+
+    public void showLeftSphereAndPlunger(bool show)
+    {
+        leftSphere.SetActive(show);
+        leftPlunger.SetActive(show);
+    }
+
+    public override int getNumberOfRuns()
+    {
+        SimulationSelector.SimulationType currentSimulationType = SimulationSelector.currentSimulationType;
+        List<Run> runs;
+
+        Dictionary<SimulationSelector.SimulationType, List<Run>> runsToGetFrom = isTrainingRun ? trainingRunsBySimulationType : runsBySimulationType;
+        if (runsToGetFrom.TryGetValue(currentSimulationType, out runs))
+        {
+            return runs.Count;
+        }
+        return 0;
     }
 }

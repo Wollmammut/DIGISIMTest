@@ -912,10 +912,10 @@ PrefabInstance:
       propertyPath: m_text
       value: "Hallo und herzlich willkommen zu unserer Studie. Im Folgenden sollst
         du herausfinden, wovon es abh\xE4ngt, wie viel Wasser ein Objekt verdr\xE4ngt.
-        Um etwas dar\xFCber herauszufinden, wirst du eine Kugel erstellen, die mehr,
-        weniger oder gleich viel Wasser verdr\xE4ngt als eine andere Kugel.\nDaraufhin
-        kannst du beobachten, wie viel Wasser von den Kugeln tats\xE4chlich verdr\xE4ngt
-        wird. Du wirst immer zwei Kugeln sehen."
+        Um etwas dar\xFCber herauszufinden, wirst du eine Kugel erstellen und dann
+        vorhersagen, ob sie mehr, weniger oder gleich viel Wasser verdr\xE4ngt als
+        eine andere Kugel. Daraufhin kannst du beobachten, wie viel Wasser von den
+        Kugeln tats\xE4chlich verdr\xE4ngt wird. So kannst du deine Annahmen pr\xFCfen."
       objectReference: {fileID: 0}
     - target: {fileID: 1856872502283679261, guid: 642f602fefaaa0d3a8f8bea6ecb3694c, type: 3}
       propertyPath: m_fontColor.b
@@ -2295,7 +2295,7 @@ GameObject:
   - component: {fileID: 2113486503}
   - component: {fileID: 2113486502}
   - component: {fileID: 2113486501}
-  - component: {fileID: 2113486500}
+  - component: {fileID: 2113486504}
   m_Layer: 5
   m_Name: InstructionProceedButton
   m_TagString: Untagged
@@ -2324,19 +2324,6 @@ RectTransform:
   m_AnchoredPosition: {x: 1400, y: 80}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2113486500
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2113486498}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f90dc54113f471da48e123310192eeca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneToSwitchTo: SelfConstructScene
 --- !u!114 &2113486501
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2381,17 +2368,17 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2113486500}
-        m_TargetAssemblyTypeName: SceneSwitcher, Assembly-CSharp
-        m_MethodName: NextScene
-        m_Mode: 1
+      - m_Target: {fileID: 2113486504}
+        m_TargetAssemblyTypeName: SimulationSelector, Assembly-CSharp
+        m_MethodName: continueToSimulation
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &2113486502
 MonoBehaviour:
@@ -2431,3 +2418,15 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2113486498}
   m_CullTransparentMesh: 1
+--- !u!114 &2113486504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2113486498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8e2408a918ea8c7a8be18fc22997d4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

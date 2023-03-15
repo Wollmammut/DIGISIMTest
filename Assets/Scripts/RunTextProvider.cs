@@ -9,7 +9,14 @@ public class RunTextProvider : MonoBehaviour
     {
         TextMeshProUGUI text = GetComponent<TextMeshProUGUI>(); // TODO null check
         string newText = text.text.Replace("$run", (SimulationStateManager.getCurrentRunNumber()).ToString());
-        newText = newText.Replace("$maxRun", SimulationStateManager.getMaxNumberOfRuns().ToString());
+        SimulationSelector.SimulationType currentSimulationType = SimulationSelector.currentSimulationType;
+        List<Run> runs;
+
+        Dictionary<SimulationSelector.SimulationType, List<Run>> runsToGetFrom = DisplacementSim.runsBySimulationType;
+        if (runsToGetFrom.TryGetValue(currentSimulationType, out runs))
+        {
+            newText = newText.Replace("$maxRun", runs.Count.ToString());
+        }
         text.text = newText;
     }
 }

@@ -101,23 +101,23 @@ public class SimulationStateManager : MonoBehaviour
         {
             return;
         }
-        if (hasNextStep())
+        if (!getSimulationComponent().shouldForceAdvanceRun() && hasNextStep())
         {
             activateNextStep();
         }
         else
         {
-            advenceToNextRun();
+            advanceToNextRun();
         }
     }
 
-    public void advenceToNextRun()
+    public void advanceToNextRun()
     {
         currentStepIndex = 0;
         Simulation simulation = getSimulationComponent();
         simulation.saveData();
         ClickLogger.clear();
-        if (maxNumberOfRuns - 1 > runNumber)
+        if (simulation.getNumberOfRuns() - 1 > runNumber)
         {
             currentStepIndex = 0;
             ++runNumber;
@@ -160,9 +160,10 @@ public class SimulationStateManager : MonoBehaviour
         T sc = gameObject.AddComponent(simulationComponent.GetType()) as T;
     }
 
-    public static int getMaxNumberOfRuns()
+    public int getMaxNumberOfRuns()
     {
-        return maxNumberOfRuns;
+        Simulation simulation = getSimulationComponent();
+        return simulation.getNumberOfRuns();
     }
 
     public static void setMaxNumberOfRuns(int maxNumber)

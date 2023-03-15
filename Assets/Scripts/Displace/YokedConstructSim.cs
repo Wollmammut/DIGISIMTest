@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public class YokedConstructSim : YokedSim
 {
     public override void initialize()
@@ -10,12 +10,24 @@ public class YokedConstructSim : YokedSim
         showSizeToggles(true);
         showMaterialToggles(true);
         showPredictButtons(false);
-        setSizeToggleAsPointerTarget(SphereSize.MEDIUM);
-        setMaterialToggleAsPointerTarget(SphereMaterial.STYROFOAM);
+        SphereSize targetSize = currentRun.yokedConstructSize;
+        SphereMaterial material = currentRun.yokedConstructMaterial;
+        setSizeToggleAsPointerTarget(targetSize);
+        setMaterialToggleAsPointerTarget(material);
         setToggleAsTarget(buttonTargets[0]);
 
         setSphereMaterialParameter(leftSphere, SphereMaterial.NONE);
-        //setSphereMaterialParameter(rightSphere, SphereMaterial.WOOD);
+        showLeftSphereAndPlunger(false);
+        
+        if (SimulationStateManager.getCurrentRunNumber() != 0)
+        {
+            GameObject instructionPanel = GameObject.Find("First Instruction");
+            if (instructionPanel != null)
+            {
+                TextMeshProUGUI text = instructionPanel.GetComponent<TextMeshProUGUI>();
+                text.text = "Als Übung kannst du das Kind dabei beobachten, wie es eine Kugel erstellt.";
+            }
+        }
     }
 
     void setMaterialToggleAsPointerTarget(SphereMaterial material)
@@ -54,6 +66,21 @@ public class YokedConstructSim : YokedSim
             buttonTarget = getButtonTargetForButtonName("ToogleLargeSize");
         }
         buttonTargets.Add(buttonTarget);
+    }
+
+    public override void onStepAdvancement(SimulationStep step, int currentStepIndex)
+    {
+        if (currentStepIndex > 0)
+        {
+            showSizeToggles(false);
+            showMaterialToggles(false);
+            showPredictButtons(true);
+            resetButtonTargets();
+            SpherePredictionSelector.Prediction yokedPrediction = currentRun.yokedPrediction;
+            string toggleName = getToggleNameForPrediction(yokedPrediction);
+            YokedSim.YokedButtonTarget buttonTarget = getButtonTargetForButtonName(toggleName);
+            setToggleAsTarget(buttonTarget);
+        }
     }
 
     protected override void setupSimulationWithValuesFromCurrentRun()
