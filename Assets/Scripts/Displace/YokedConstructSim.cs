@@ -18,7 +18,7 @@ public class YokedConstructSim : YokedSim
 
         setSphereMaterialParameter(leftSphere, SphereMaterial.NONE);
         showLeftSphereAndPlunger(false);
-        
+
         if (SimulationStateManager.getCurrentRunNumber() != 0)
         {
             GameObject instructionPanel = GameObject.Find("First Instruction");
@@ -85,27 +85,27 @@ public class YokedConstructSim : YokedSim
 
     protected override void setupSimulationWithValuesFromCurrentRun()
     {
-        SphereSizeParameter spl = leftSphere.GetComponent<SphereSizeParameter>();
-        spl.setValue(currentRun.sizeLeft);
-        SphereSizeParameter spr = rightSphere.GetComponent<SphereSizeParameter>();
-        spr.setValue(currentRun.sizeRight);
+        // SphereSizeParameter spl = leftSphere.GetComponent<SphereSizeParameter>();
+        // spl.setValue(currentRun.sizeLeft);
+        // SphereSizeParameter spr = rightSphere.GetComponent<SphereSizeParameter>();
+        // spr.setValue(currentRun.sizeRight);
 
-        SphereMaterialParameter materialParameterLeft = leftSphere.GetComponent<SphereMaterialParameter>();
-        materialParameterLeft.setValue(currentRun.materialLeft);
-        SphereMaterialParameter materialParameterRight = rightSphere.GetComponent<SphereMaterialParameter>();
-        materialParameterRight.setValue(currentRun.materialRight);
+        // SphereMaterialParameter materialParameterLeft = leftSphere.GetComponent<SphereMaterialParameter>();
+        // materialParameterLeft.setValue(currentRun.materialLeft);
+        // SphereMaterialParameter materialParameterRight = rightSphere.GetComponent<SphereMaterialParameter>();
+        // materialParameterRight.setValue(currentRun.materialRight);
         
-        ConstructionTask constructTask = gameObject.GetComponent<ConstructionTask>();//TODO nulll check
-        int currentRunNumber = SimulationStateManager.getCurrentRunNumber();
-        currentRun = getRunForRunNumber(currentRunNumber); // TODO null check
-        constructTask.setTaskSymbol(currentRun.constructTask);
+        // ConstructionTask constructTask = gameObject.GetComponent<ConstructionTask>();//TODO nulll check
+        // int currentRunNumber = SimulationStateManager.getCurrentRunNumber();
+        // currentRun = getRunForRunNumber(currentRunNumber); // TODO null check
+        // constructTask.setTaskSymbol(currentRun.constructTask);
 
-        SphereSize targetSize = currentRun.yokedConstructSize;
-        SphereMaterial material = currentRun.yokedConstructMaterial;
-        setSizeToggleAsPointerTarget(targetSize);
-        setMaterialToggleAsPointerTarget(material);
+        // SphereSize targetSize = currentRun.yokedConstructSize;
+        // SphereMaterial material = currentRun.yokedConstructMaterial;
+        // setSizeToggleAsPointerTarget(targetSize);
+        // setMaterialToggleAsPointerTarget(material);
         
-        replaceKidsWordsPlaceholderWhith("$size", targetSize.getAdjective());
-        replaceKidsWordsPlaceholderWhith("$material", material.name);
+        // replaceKidsWordsPlaceholderWhith("$size", targetSize.getAdjective());
+        // replaceKidsWordsPlaceholderWhith("$material", material.name);
     }
 }

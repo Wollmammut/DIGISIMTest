@@ -108,8 +108,8 @@ public class ParticipantDataLogger : MonoBehaviour
         JsonSerializer serializer = new JsonSerializer();
         serializer.Converters.Add(new JavaScriptDateTimeConverter());
         serializer.NullValueHandling = NullValueHandling.Ignore;
-        
-        using (FileStream file = File.Open(Path.Combine(Application.persistentDataPath, VPNCode + "_" + DateTime.Today.ToString("dd-MM-yyyy")), FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite))  
+        System.IO.Directory.CreateDirectory(Path.Combine(Application.persistentDataPath + "/Logs"));
+        using (FileStream file = File.Open(Path.Combine(Application.persistentDataPath + "/Logs", VPNCode + "_" + DateTime.Today.ToString("dd-MM-yyyy")), FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite))  
         { 
             using (StreamWriter sw = new StreamWriter(file))
             {

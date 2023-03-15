@@ -84,6 +84,7 @@ public class YokedSim : DisplacementSim
     {
         if (buttonTargets.Count > buttonTargetsIndex + 1)
         {
+            hideCursor();
             YokedButtonTarget target = buttonTargets[++buttonTargetsIndex];
             setToggleAsTarget(target);
         }
@@ -95,6 +96,7 @@ public class YokedSim : DisplacementSim
 
     public override void onSimulationStateChanged(SimulationStateManager.SimulationStates oldState, SimulationStateManager.SimulationStates newState)
     {
+        base.onSimulationStateChanged(oldState, newState);
         if (newState == SimulationStateManager.SimulationStates.DEMO)
         {
             hideCursor();
@@ -119,6 +121,7 @@ public class YokedSim : DisplacementSim
     {
         buttonTargets.Clear(); 
         buttonTargetsIndex = 0;
+        hasReachedTarget = false;
     }
 
     protected virtual void setupSimulationWithValuesFromCurrentRun()

@@ -357,7 +357,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   steps: []
-  stepIndexToSwitchToAfterInstructions: 0
+  trainingSteps: []
 --- !u!1 &6037865810968653396
 GameObject:
   m_ObjectHideFlags: 0
@@ -910,7 +910,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7308329629635919395}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -58, z: 0}
+  m_LocalPosition: {x: 0, y: -145.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -969,7 +969,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4731632469543773483, guid: d86988d65d038d2f6b7edf04290bd97e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 159
+      value: 116.9
       objectReference: {fileID: 0}
     - target: {fileID: 4731632469543773483, guid: d86988d65d038d2f6b7edf04290bd97e, type: 3}
       propertyPath: m_LocalPosition.z

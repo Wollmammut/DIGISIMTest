@@ -75,17 +75,17 @@ public abstract class DisplacementSim : Simulation
         setSphereMaterialParameter(leftSphere, currentRun.materialLeft);
         setSphereMaterialParameter(rightSphere, currentRun.materialRight);
 
-        leftSphereStartPosition = leftSphere.transform.position;
-        leftSphereTargetPosition = leftSphereStartPosition - new Vector3(0, 150, 0);
-        rightSphereStartPosition = rightSphere.transform.position;
-        rightSphereTargetPosition = rightSphereStartPosition - new Vector3(0, 150, 0);
+        // leftSphereStartPosition = leftSphere.transform.position;
+        // leftSphereTargetPosition = leftSphereStartPosition - new Vector3(0, 150, 0);
+        // rightSphereStartPosition = rightSphere.transform.position;
+        // rightSphereTargetPosition = rightSphereStartPosition - new Vector3(0, 150, 0);
 
         leftPlunger = GameObject.Find("LeftPlunger");
         rightPlunger = GameObject.Find("RightPlunger");
         leftPlungerStartPosition = leftPlunger.transform.position;
-        leftPlungerTargetPosition = leftPlungerStartPosition - new Vector3(0, 150, 0);
+        leftPlungerTargetPosition = leftPlungerStartPosition - new Vector3(0, 120, 0);
         rightPlungerStartPosition = rightPlunger.transform.position;
-        rightPlungerTargetPosition = rightPlungerStartPosition - new Vector3(0, 150, 0);
+        rightPlungerTargetPosition = rightPlungerStartPosition - new Vector3(0, 120, 0);
 
         predictButtons = GameObject.Find("PredictButtons");
         sizeButtons = GameObject.Find("SizeToggleGroup");
@@ -249,13 +249,25 @@ public abstract class DisplacementSim : Simulation
 
     public override void onSimulationStateChanged(SimulationStateManager.SimulationStates oldState, SimulationStateManager.SimulationStates newState)
     {
-        if(oldState == SimulationStateManager.SimulationStates.INTERMISSION)
-        {
-            setSphereSizeParameter(leftSphere, currentRun.sizeLeft);
-            setSphereSizeParameter(rightSphere, currentRun.sizeRight);
+        // if(oldState == SimulationStateManager.SimulationStates.INTERMISSION)
+        // {
+        //     setSphereSizeParameter(leftSphere, currentRun.sizeLeft);
+        //     setSphereSizeParameter(rightSphere, currentRun.sizeRight);
 
-            setSphereMaterialParameter(leftSphere, currentRun.materialLeft);
-            setSphereMaterialParameter(rightSphere, currentRun.materialRight);
+        //     setSphereMaterialParameter(leftSphere, currentRun.materialLeft);
+        //     setSphereMaterialParameter(rightSphere, currentRun.materialRight);
+        // }
+        if (newState == SimulationStateManager.SimulationStates.ACTIVE)
+        {
+            leftSphereStartPosition = leftSphere.transform.position;
+            leftSphereTargetPosition = leftSphereStartPosition - new Vector3(0, 120, 0);
+            rightSphereStartPosition = rightSphere.transform.position;
+            rightSphereTargetPosition = rightSphereStartPosition - new Vector3(0, 120, 0);
+            GameObject continueButton = GameObject.Find("SimulationButton");
+            if (continueButton != null)
+            {
+                continueButton.SetActive(false);
+            }
         }
     }
 
