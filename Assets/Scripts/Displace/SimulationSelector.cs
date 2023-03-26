@@ -42,25 +42,25 @@ public class SimulationSelector : MonoBehaviour
     public static string simulationActor; // you know, if c# enums weren't as shit as they are those two fields could be enum properties... and I refuse to make another stupid switch over enums. Fix yo enums, c#...
     public static string simulationActivity;
 
-    public void setSelf()
+    public static void setSelf()
     {
         selfYoked = SelfYoked.SELF;
         simulationActor = "self";
     }
 
-    public void setYoked()
+    public static void setYoked()
     {
         selfYoked = SelfYoked.YOKED;
         simulationActor = "yoked";
     }
 
-    public void setPredict()
+    public static void setPredict()
     {
         predictConstruct = PredictConstruct.PREDICT;
         simulationActivity = "predict";
     }
 
-    public void setConstruct()
+    public static void setConstruct()
     {
         predictConstruct = PredictConstruct.CONSTRUCT;
         simulationActivity = "construct";
@@ -72,10 +72,12 @@ public class SimulationSelector : MonoBehaviour
         // yeah, I know, bitflags...
         if (selfYoked == SelfYoked.SELF)
         {
+            setSelf();
             if(predictConstruct == PredictConstruct.PREDICT)
             {
                 currentSimulationScenes = new SimulationScenes("SelfPredictScene", "SelfPredictInstructionScene");
                 currentSimulationType = SimulationType.SELF_PREDICT;
+                setPredict();
                 //SceneManager.LoadScene("SelfPredictInstructionScene");
             }
             else
@@ -83,21 +85,25 @@ public class SimulationSelector : MonoBehaviour
                 currentSimulationScenes = new SimulationScenes("SelfConstructScene", "SelfConstructInstructionScene");
                 currentSimulationType = SimulationType.SELF_CONSTRUCT;
                 //SceneManager.LoadScene("SelfConstructInstructionScene");
+                setConstruct();
             }
         }
         else
         {
+            setYoked();
             if(predictConstruct == PredictConstruct.PREDICT)
             {
                 currentSimulationScenes = new SimulationScenes("YokedPredictScene", "YokedPredictInstructionScene");
                 currentSimulationType = SimulationType.YOKED_PREDICT;
                 //SceneManager.LoadScene("YokedPredictInstructionScene");
+                setPredict();
             }
             else
             {
                 currentSimulationScenes = new SimulationScenes("YokedConstructScene", "YokedConstructInstructionScene");
                 currentSimulationType = SimulationType.YOKED_CONSTRUCT;
                 //SceneManager.LoadScene("YokedConstructInstructionScene");
+                setConstruct();
             }
         }
     }

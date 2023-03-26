@@ -19,15 +19,15 @@ public class SpherePredictionSelector : MonoBehaviour
     {
         switch(name)
         {
-            case "<<":
+            case "sureleft":
             return Prediction.DEFINITELY_LEFT;
-            case "<":
+            case "ratherleft":
             return Prediction.LEFT;
-            case "0":
+            case "equal":
             return Prediction.UNSURE;
-            case ">":
+            case "ratherright":
             return Prediction.RIGHT;
-            case ">>":
+            case "sureright":
             return Prediction.DEFINITELY_RIGHT;
             default:
             return Prediction.UNSURE;

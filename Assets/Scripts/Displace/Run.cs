@@ -12,8 +12,8 @@ public class Run
     public SphereSize sizeRight = SphereSize.SMALL;
     public SphereMaterial materialLeft = SphereMaterial.WOOD;
     public SphereMaterial materialRight = SphereMaterial.LEAD;
-    public string correctAnswer;
-    public ConstructionTask.EnumConstructionTask constructTask = ConstructionTask.EnumConstructionTask.SMALLER;
+    // public string correctAnswer;
+    // public ConstructionTask.EnumConstructionTask constructTask = ConstructionTask.EnumConstructionTask.SMALLER;
     public SpherePredictionSelector.Prediction yokedPrediction = SpherePredictionSelector.Prediction.LEFT;
     public SphereSize yokedConstructSize = SphereSize.SMALL;
     public SphereMaterial yokedConstructMaterial = SphereMaterial.WOOD;
@@ -39,10 +39,10 @@ public class Run
         materialName = strings[(int)RunDataLoader.ColumnHeaderIndices.MATERIAL_RIGHT];
         initializedCorrectly &= assignSphereMaterial(ref materialRight, materialName);
 
-        correctAnswer = strings[(int)RunDataLoader.ColumnHeaderIndices.CORRECT_ANSWER];
+        // correctAnswer = strings[(int)RunDataLoader.ColumnHeaderIndices.CORRECT_ANSWER];
 
-        string constructTaskName = strings[(int)RunDataLoader.ColumnHeaderIndices.CONSTRUCT_TASK];
-        constructTask = ConstructionTask.getConstructionTaskByName(constructTaskName);
+        // string constructTaskName = strings[(int)RunDataLoader.ColumnHeaderIndices.CONSTRUCT_TASK];
+        // constructTask = ConstructionTask.getConstructionTaskByName(constructTaskName);
 
         yokedPrediction = SpherePredictionSelector.getPredictionFromName( strings[(int)RunDataLoader.ColumnHeaderIndices.YOKED_PREDICTION]);
 

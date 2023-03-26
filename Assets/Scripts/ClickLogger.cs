@@ -48,8 +48,8 @@ public class ClickLogger : MonoBehaviour
         return loggedClicks;
     }
     
-    static ClickLogger()
+    public static void startLogger()
     {
-        timer.Start();
+        timer.Restart();
     }
 }

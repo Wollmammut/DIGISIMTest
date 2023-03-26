@@ -9,6 +9,7 @@ using UnityEngine.UI;
 using TMPro;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 
 public class ParticipantDataLogger : MonoBehaviour
 {
@@ -78,7 +79,7 @@ public class ParticipantDataLogger : MonoBehaviour
 
     public static bool isAllDataSet()
     {
-        return continueFlag == (AGE_FLAG | VPN_FLAG);
+        return continueFlag == VPN_FLAG;
     }
 
     public static string getNameForSex(ParticipantSex participantSex)
@@ -94,30 +95,46 @@ public class ParticipantDataLogger : MonoBehaviour
         }
     }
 
-    public static void saveParticipantData(AdditionalApplicationData additionalData)
+    public static void saveParticipantData(System.Object additionalData, System.Object additionalRunData)
     {
-        participantData.age = age;
+        //participantData.age = age;
         participantData.VPNCode = VPNCode;
-        participantData.sex = getNameForSex(sex);
-
-        participantData.addLoggedClicksForRunNumber(ClickLogger.getLoggedClicks(), SimulationStateManager.getCurrentRunNumber(), additionalData);
+        //participantData.sex = getNameForSex(sex);
+        participantData.additionalData = additionalData;
+        participantData.addLoggedClicksForRunNumber(ClickLogger.getLoggedClicks(), SimulationStateManager.getCurrentRunNumber(), additionalRunData);
 
         // string jsonString = JsonUtility.ToJson(participantData, true);
         // writeRunJson(VPNCode + "_" + DateTime.Today, jsonString);
 
+        
+    }
+
+    public static void saveDataToFile()
+    {
+        try{
         JsonSerializer serializer = new JsonSerializer();
         serializer.Converters.Add(new JavaScriptDateTimeConverter());
-        serializer.NullValueHandling = NullValueHandling.Ignore;
+        //serializer.NullValueHandling = NullValueHandling.Ignore;
+        //string s = JsonConvert.SerializeObject(participantData, Formatting.Indented);
         System.IO.Directory.CreateDirectory(Path.Combine(Application.persistentDataPath + "/Logs"));
-        using (FileStream file = File.Open(Path.Combine(Application.persistentDataPath + "/Logs", VPNCode + "_" + DateTime.Today.ToString("dd-MM-yyyy")), FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite))  
+        using (FileStream file = File.Open(Path.Combine(Application.persistentDataPath + "/Logs", VPNCode + "_" + DateTime.Today.ToString("dd-MM-yyyy")), FileMode.OpenOrCreate, FileAccess.Write))  
         { 
-            using (StreamWriter sw = new StreamWriter(file))
+            
+            using (StreamWriter sw = new StreamWriter(file, Encoding.UTF8))
             {
+                // sw.Write(s);
+                // sw.Flush();
+                // sw.Close();
                 using (JsonWriter writer = new JsonTextWriter(sw){ Formatting = Formatting.Indented })
                 {
                     serializer.Serialize(writer, participantData);
                 }
             }
+        }
+        }
+        //System.IO.File.WriteAllText(Path.Combine(Application.persistentDataPath + "/Logs", VPNCode + "_" + DateTime.Today.ToString("dd-MM-yyyy")), s);
+        catch(Exception e){
+            Debug.Log(e);
         }
     }
 

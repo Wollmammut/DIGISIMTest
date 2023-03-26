@@ -1160,6 +1160,10 @@ PrefabInstance:
       propertyPath: m_AllowSwitchOff
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4733967751551195765, guid: 0040deb51e9447e78a321c4064a5c049, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 437.99994
+      objectReference: {fileID: 0}
     - target: {fileID: 4733967751723907713, guid: 0040deb51e9447e78a321c4064a5c049, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -1180,6 +1184,10 @@ PrefabInstance:
       propertyPath: connectedGameObject
       value: 
       objectReference: {fileID: 2002864636}
+    - target: {fileID: 6235478636731558617, guid: 0040deb51e9447e78a321c4064a5c049, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 1401
+      objectReference: {fileID: 0}
     - target: {fileID: 7726379250437849919, guid: 0040deb51e9447e78a321c4064a5c049, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 

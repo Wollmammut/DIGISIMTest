@@ -113,6 +113,7 @@ public class SimulationStateManager : MonoBehaviour
 
     public void advanceToNextRun()
     {
+        changeStateTo(SimulationStates.PAUSED);
         currentStepIndex = 0;
         Simulation simulation = getSimulationComponent();
         simulation.saveData();
@@ -140,6 +141,7 @@ public class SimulationStateManager : MonoBehaviour
             }
             else
             {
+                ParticipantDataLogger.saveDataToFile();
                 SceneManager.LoadScene("EndScene");// TODO errof if scenetowtichto == null
             }
         }

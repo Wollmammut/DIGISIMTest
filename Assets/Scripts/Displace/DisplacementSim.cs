@@ -36,6 +36,7 @@ public abstract class DisplacementSim : Simulation
     protected override void Start()
     {
         base.Start();
+        ClickLogger.startLogger();
         //secondsToLowerSpheres = showAnimations ? 5 : 0;
     }
 
@@ -348,11 +349,13 @@ public abstract class DisplacementSim : Simulation
 
     public override void saveData()
     {
+        RunDataDisplace runData = new RunDataDisplace();
+        runData.trialIdent = currentRun.trialIdent == "" ? "asd" : currentRun.trialIdent;
         ParticipantDataDisplace data = new ParticipantDataDisplace();
-        data.trialIdent = currentRun.trialIdent;
         data.conditionActor = SimulationSelector.simulationActor;
         data.conditionActivity = SimulationSelector.simulationActivity;
-        ParticipantDataLogger.saveParticipantData(data);
+        data.animated = showAnimations ? "animated" : "notAnimated";
+        ParticipantDataLogger.saveParticipantData(data, runData);
     }
 
     public override void reset()

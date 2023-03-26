@@ -9,7 +9,7 @@ using NReco.Csv;
 
 public class RunDataLoader : MonoBehaviour
 {
-    private const int NUM_COLUMS = 12;
+    private int NUM_COLUMS = Enum.GetValues(typeof(ColumnHeaderIndices)).Length;
     public enum ColumnHeaderIndices
     {
         TRIAL_IDENT,
@@ -19,8 +19,8 @@ public class RunDataLoader : MonoBehaviour
         SIZE_RIGHT,
         MATERIAL_LEFT,
         MATERIAL_RIGHT,
-        CORRECT_ANSWER,
-        CONSTRUCT_TASK,
+        //CORRECT_ANSWER,
+        //CONSTRUCT_TASK,
         YOKED_PREDICTION,
         YOKED_SIZE,
         YOKED_MATERIAL
