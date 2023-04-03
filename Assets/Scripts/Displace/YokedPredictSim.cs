@@ -6,11 +6,6 @@ using TMPro;
 
 public class YokedPredictSim : YokedSim
 {
-    protected override void Start()
-    {
-        //SpherePredictionSelector.Prediction prediction = currentRun.YokedPrediction;
-    }
-
     public override void initialize()
     {
         base.initialize();

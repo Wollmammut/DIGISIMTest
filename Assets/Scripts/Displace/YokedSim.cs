@@ -29,7 +29,7 @@ public class YokedSim : DisplacementSim
     protected void movePointerToTarget()
     {
         float secondsToReachTarget = 5; // take 5s to get to button;
-        fractionOfTimePassed += Time.deltaTime/secondsToReachTarget;
+        fractionOfTimePassed += Time.deltaTime / secondsToReachTarget;
         pointer.transform.position = Vector3.Lerp(pointerStartPosition, buttonPosition, fractionOfTimePassed);
 
         if (Vector3.Distance(pointer.transform.position, buttonPosition) < 1)
@@ -50,6 +50,19 @@ public class YokedSim : DisplacementSim
                 if (toggle != null)
                 {
                     toggle.isOn = true;
+                    ClickLogger clickLogger = buttonToMoveTo.GetComponent<ClickLogger>();
+                    if (clickLogger != null)
+                    {
+                        clickLogger.logClick();
+                    }
+                    foreach (Transform child in buttonToMoveTo.transform.parent.transform)
+                    {
+                        Toggle t = child.GetComponent<Toggle>();
+                        if (t != null)
+                        {
+                            t.interactable = false;
+                        }
+                    }
                     hasReachedTarget = false;
                     chooseNewTarget();
                 }
@@ -74,7 +87,7 @@ public class YokedSim : DisplacementSim
 
     protected void setToggleAsTarget(YokedButtonTarget buttonTarget)
     {
-        buttonToMoveTo = buttonTarget.buttonToMoveTo; 
+        buttonToMoveTo = buttonTarget.buttonToMoveTo;
         buttonPosition = buttonTarget.buttonPosition;
         pointerStartPosition = pointer.transform.position;
         fractionOfTimePassed = 0;
@@ -101,25 +114,25 @@ public class YokedSim : DisplacementSim
         {
             hideCursor();
         }
-        if(oldState == SimulationStateManager.SimulationStates.INTERMISSION)
+        if (oldState == SimulationStateManager.SimulationStates.INTERMISSION)
         {
-        //SphereSizeParameter spl = leftSphere.GetComponent<SphereSizeParameter>();
-        //spl.setValue(currentRun.sizeLeft);
-        //SphereSizeParameter spr = rightSphere.GetComponent<SphereSizeParameter>();
-        //spr.setValue(currentRun.sizeRight);
+            //SphereSizeParameter spl = leftSphere.GetComponent<SphereSizeParameter>();
+            //spl.setValue(currentRun.sizeLeft);
+            //SphereSizeParameter spr = rightSphere.GetComponent<SphereSizeParameter>();
+            //spr.setValue(currentRun.sizeRight);
 
-        //SphereMaterialParameter materialParameterLeft = leftSphere.GetComponent<SphereMaterialParameter>();
-        //SphereMaterialParameter materialParameterRight = rightSphere.GetComponent<SphereMaterialParameter>();
+            //SphereMaterialParameter materialParameterLeft = leftSphere.GetComponent<SphereMaterialParameter>();
+            //SphereMaterialParameter materialParameterRight = rightSphere.GetComponent<SphereMaterialParameter>();
 
-        resetButtonTargets(); 
-        setupSimulationWithValuesFromCurrentRun();
-        setToggleAsTarget(buttonTargets[0]);
+            resetButtonTargets();
+            setupSimulationWithValuesFromCurrentRun();
+            setToggleAsTarget(buttonTargets[0]);
         }
     }
 
     protected void resetButtonTargets()
     {
-        buttonTargets.Clear(); 
+        buttonTargets.Clear();
         buttonTargetsIndex = 0;
         hasReachedTarget = false;
     }
@@ -132,23 +145,23 @@ public class YokedSim : DisplacementSim
     protected string getToggleNameForPrediction(SpherePredictionSelector.Prediction prediction)
     {
         string toggleName = "";
-        switch(prediction)
+        switch (prediction)
         {
             case SpherePredictionSelector.Prediction.DEFINITELY_LEFT:
-            toggleName = "PredictDefinitelyLeftToggle";
-            break; 
+                toggleName = "PredictDefinitelyLeftToggle";
+                break;
             case SpherePredictionSelector.Prediction.LEFT:
-            toggleName = "PredictLeftToggle";
-            break; 
+                toggleName = "PredictLeftToggle";
+                break;
             case SpherePredictionSelector.Prediction.UNSURE:
-            toggleName = "PredictUnsureToggle";
-            break; 
+                toggleName = "PredictUnsureToggle";
+                break;
             case SpherePredictionSelector.Prediction.RIGHT:
-            toggleName = "PredictRightToggle";
-            break; 
+                toggleName = "PredictRightToggle";
+                break;
             case SpherePredictionSelector.Prediction.DEFINITELY_RIGHT:
-            toggleName = "PredictDefinitelyRightToggle";
-            break; 
+                toggleName = "PredictDefinitelyRightToggle";
+                break;
         }
         return toggleName;
     }

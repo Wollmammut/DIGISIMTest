@@ -139,7 +139,7 @@ public abstract class DisplacementSim : Simulation
         hideCursor();
         if (ShowAnimations())
         {
-            fractionOfLoweringTimePassed += Time.deltaTime/secondsToLowerSpheres;
+            fractionOfLoweringTimePassed += Time.deltaTime / secondsToLowerSpheres;
             leftSphere.transform.position = Vector3.Lerp(leftSphereStartPosition, leftSphereTargetPosition, fractionOfLoweringTimePassed);
             rightSphere.transform.position = Vector3.Lerp(rightSphereStartPosition, rightSphereTargetPosition, fractionOfLoweringTimePassed);
             leftPlunger.transform.position = Vector3.Lerp(leftPlungerStartPosition, leftPlungerTargetPosition, fractionOfLoweringTimePassed);
@@ -160,7 +160,7 @@ public abstract class DisplacementSim : Simulation
 
     protected void showPredictButtons(bool show)
     {
-        if(predictButtons == null)
+        if (predictButtons == null)
         {
             //TODO error
         }
@@ -172,7 +172,7 @@ public abstract class DisplacementSim : Simulation
             {
                 ToggleGroup toggleGroup = predictButtons.GetComponent<ToggleGroup>();// TODO null check
                 toggleGroup.SetAllTogglesOff();
-                foreach(Transform child in predictButtons.transform)
+                foreach (Transform child in predictButtons.transform)
                 {
                     Toggle t = child.GetComponent<Toggle>();
                     t.SetIsOnWithoutNotify(false);
@@ -183,7 +183,7 @@ public abstract class DisplacementSim : Simulation
 
     protected void showSizeToggles(bool show)
     {
-        if(sizeButtons == null)
+        if (sizeButtons == null)
         {
             //TODO error
         }
@@ -201,7 +201,7 @@ public abstract class DisplacementSim : Simulation
 
     public void showMaterialToggles(bool show)
     {
-        if(materialButtons == null)
+        if (materialButtons == null)
         {
             //TODO error
         }
@@ -219,12 +219,12 @@ public abstract class DisplacementSim : Simulation
 
     public void setToggleGroupInteractable(bool interactable, string groupName)
     {
-        GameObject toggleGroupGO = GameObject.Find(groupName); 
+        GameObject toggleGroupGO = GameObject.Find(groupName);
         if (toggleGroupGO == null)
         {
             return;
         }
-        foreach(Transform child in toggleGroupGO.transform)
+        foreach (Transform child in toggleGroupGO.transform)
         {
             Toggle t = child.GetComponent<Toggle>();
             if (t != null)
@@ -338,7 +338,7 @@ public abstract class DisplacementSim : Simulation
 
     public void hideCursor()
     {
-       Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.Locked;
 
     }
 

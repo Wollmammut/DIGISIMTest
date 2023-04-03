@@ -182,9 +182,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Nun sagt das Kind vorher, welche der beiden Kugeln mehr Wasser verdr\xE4ngt.
-    Die Vorhersage des anderen Kindes ist an den K\xE4stchen unter den Wasserbeh\xE4ltern
-    zu sehen. Wenn du die Antwort des anderen Kindes verstanden hast, klicke auf
-    \u201Eweiter\u201C. Dann siehst du, wie du Kugeln unter Wasser gedr\xFCckt werden."
+    Die Vorhersage des Kindes ist an den K\xE4stchen unter den Wasserbeh\xE4ltern
+    zu sehen. Wenn du die Antwort des Kindes verstanden hast, klicke auf \u201Eweiter\u201C.
+    Dann siehst du, wie du Kugeln unter Wasser gedr\xFCckt werden."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1446,6 +1446,10 @@ PrefabInstance:
       propertyPath: m_Group
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4733967751551195765, guid: 0040deb51e9447e78a321c4064a5c049, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 437.99994
+      objectReference: {fileID: 0}
     - target: {fileID: 4733967751723907713, guid: 0040deb51e9447e78a321c4064a5c049, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -1478,6 +1482,10 @@ PrefabInstance:
       propertyPath: connectedGameObject
       value: 
       objectReference: {fileID: 2002864636}
+    - target: {fileID: 8664871207064161703, guid: 0040deb51e9447e78a321c4064a5c049, type: 3}
+      propertyPath: onlyLogFirstClick
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8955799004354527437, guid: 0040deb51e9447e78a321c4064a5c049, type: 3}
       propertyPath: connectedGameObject
       value: 

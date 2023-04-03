@@ -6,6 +6,7 @@ using System.Text;
 using System.IO;
 using System;
 using NReco.Csv;
+using System.Xml;
 
 public class RunDataLoader : MonoBehaviour
 {
@@ -28,6 +29,7 @@ public class RunDataLoader : MonoBehaviour
 
     public void loadRunData()
     {
+        ReadXMLFile(Path.Combine(Application.persistentDataPath, "inputx.xml"));
         List<string> readText = readRunInputs("input");
         if (readText == null || (readText.Count % NUM_COLUMS) != 0)
         {
@@ -151,5 +153,28 @@ public class RunDataLoader : MonoBehaviour
             }     
         }
         return values;
+    }
+
+    static void ReadXMLFile(string filePath)
+    {
+        XmlDocument doc = new XmlDocument();
+        doc.Load(filePath);
+        XmlNode node = doc.DocumentElement.SelectSingleNode("/Worksheet/Table");
+        
+        //XmlNode root = doc.SelectSingleNode("//Worksheet[@tName='Tabelle1']");
+        XmlNodeList list = doc.SelectNodes("//Worksheet");
+        //Debug.Log(root.Name);
+        //Display the contents of the child nodes.
+        // if (list.HasChildNodes)
+        // {
+            // for (int i = 0; i < root.ChildNodes.Count; i++)
+            // {
+                foreach (XmlNode n in list)
+                {
+                    Debug.Log(n);
+      }
+                
+            // }
+        // }
     }
 }

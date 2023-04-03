@@ -27,6 +27,12 @@ public class YokedConstructSim : YokedSim
                 TextMeshProUGUI text = instructionPanel.GetComponent<TextMeshProUGUI>();
                 text.text = "Als Übung kannst du das Kind dabei beobachten, wie es eine Kugel erstellt.";
             }
+            GameObject instructionPanel1 = GameObject.Find("Second Instruction");
+            if (instructionPanel1 != null)
+            {
+                TextMeshProUGUI text1 = instructionPanel1.GetComponent<TextMeshProUGUI>();
+                text1.text = "Als Übung kannst du das Kind dabei beobachten wie es eine Vorhersage trifft.";
+            }
         }
     }
 

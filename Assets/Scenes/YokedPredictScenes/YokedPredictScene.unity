@@ -736,8 +736,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Klicke auf \u201Eweiter\u201C. Dann siehst du, wie du Kugeln unter Wasser
-    gedr\xFCckt werden."
+  m_text: "Je mehr Wasser verdr\xE4ngt wurde, desto h\xF6her steigt das Wasser."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -872,7 +871,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Die Vorhersage des anderen Kindes ist an den K\xE4stchen unter den Wasserbeh\xE4ltern
+  m_text: "Die Vorhersage des Kindes ist an den K\xE4stchen unter den Wasserbeh\xE4ltern
     zu sehen. Wenn du die Antwort des anderen Kindes verstanden hast, klicke auf
     \u201Eweiter\u201C. Dann siehst du, wie du Kugeln unter Wasser gedr\xFCckt werden."
   m_isRightToLeft: 0

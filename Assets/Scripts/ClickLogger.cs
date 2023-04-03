@@ -26,8 +26,16 @@ public class ClickLogger : MonoBehaviour
 
     public void logClick()
     {
-       if (Input.GetMouseButtonUp(0))
-       {
+        Toggle t = GetComponent<Toggle>();
+        if (t != null)
+        {
+            if (!t.interactable)
+            {
+                return;
+            }
+        }
+    //    if (Input.GetMouseButtonUp(0))
+    //    {
             if (onlyLogFirstClick && amountOfClicksLogged > 1)
             {
                 return;
@@ -40,7 +48,7 @@ public class ClickLogger : MonoBehaviour
                 loggedClicks.Add(click);
                 ++amountOfClicksLogged;
             }
-       }
+    //    }
     }
 
     public static List<LoggedClick> getLoggedClicks()

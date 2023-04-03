@@ -1177,6 +1177,10 @@ PrefabInstance:
       propertyPath: connectedGameObject
       value: 
       objectReference: {fileID: 2002864636}
+    - target: {fileID: 4733967751551195765, guid: 0040deb51e9447e78a321c4064a5c049, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 437.99994
+      objectReference: {fileID: 0}
     - target: {fileID: 5453811894053987157, guid: 0040deb51e9447e78a321c4064a5c049, type: 3}
       propertyPath: connectedGameObject
       value: 
@@ -1196,10 +1200,26 @@ PrefabInstance:
     - target: {fileID: 7726379250437849919, guid: 0040deb51e9447e78a321c4064a5c049, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
+      objectReference: {fileID: 182778799460738525}
+    - target: {fileID: 7726379250437849919, guid: 0040deb51e9447e78a321c4064a5c049, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
       objectReference: {fileID: 1119607721}
     - target: {fileID: 7726379250437849919, guid: 0040deb51e9447e78a321c4064a5c049, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: logClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 7726379250437849919, guid: 0040deb51e9447e78a321c4064a5c049, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: toggleSimulationActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 7726379250437849919, guid: 0040deb51e9447e78a321c4064a5c049, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ClickLogger, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7726379250437849919, guid: 0040deb51e9447e78a321c4064a5c049, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: SimulationStateManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 7861238983878997044, guid: 0040deb51e9447e78a321c4064a5c049, type: 3}
       propertyPath: m_Camera
@@ -1219,6 +1239,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0040deb51e9447e78a321c4064a5c049, type: 3}
+--- !u!114 &182778799460738525 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 914513862019609837, guid: 0040deb51e9447e78a321c4064a5c049, type: 3}
+  m_PrefabInstance: {fileID: 182778799460738524}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ece2c5389f52a8ea9b79b5d297bab268, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6037865811842925250
 PrefabInstance:
   m_ObjectHideFlags: 0
